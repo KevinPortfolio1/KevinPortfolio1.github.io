@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二欄式版型示例</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    header, footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1em;
+    }
+    main {
+      display: flex;
+      min-height: 300px;
+    }
+    .sidebar {
+      width: 25%;
+      background-color: #f4f4f4;
+      padding: 1em;
+    }
+    .content {
+      flex: 1;
+      background-color: #fff;
+      padding: 1em;
+    }
+    footer {
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>網站標題</h1>
+  </header>
+
+  <main>
+    <aside class="sidebar">
+      <h2>側邊欄</h2>
+      <p>這裡是側邊內容。</p>
+    </aside>
+    <section class="content">
+      <h2>主要內容</h2>
+      <p>這裡是主內容區。</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 你的網站名稱</p>
+  </footer>
+
+</body>
+</html>
