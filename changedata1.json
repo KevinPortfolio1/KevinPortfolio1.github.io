@@ -1,0 +1,166 @@
+{
+  "web_applications": [
+    {
+      "category": "資訊展示與內容平台",
+      "examples": [
+        {
+          "name": "新聞 / 部落格網站",
+          "features": [
+            "顯示文字、圖片、影片等內容",
+            "加入留言區、分類、搜尋功能"
+          ],
+          "examples": ["聯合新聞網", "Medium"]
+        },
+        {
+          "name": "線上課程 / 教育平台",
+          "features": [
+            "顯示教學影片、教材",
+            "進度追蹤、小考測驗"
+          ],
+          "examples": ["Coursera", "學習吧"]
+        }
+      ]
+    },
+    {
+      "category": "商業應用",
+      "examples": [
+        {
+          "name": "電子商務網站",
+          "features": [
+            "商品列表、購物車、付款功能",
+            "訂單查詢、會員登入"
+          ],
+          "examples": ["蝦皮", "PChome", "Amazon"]
+        },
+        {
+          "name": "線上預約 / 訂票系統",
+          "features": [
+            "時間選擇、表單提交、付款"
+          ],
+          "examples": ["診所預約", "美容沙龍", "訂電影票（威秀）"]
+        }
+      ]
+    },
+    {
+      "category": "互動與社群",
+      "examples": [
+        {
+          "name": "即時聊天室 / 通訊平台",
+          "features": [
+            "WebSocket 即時傳訊",
+            "多人聊天室、訊息紀錄"
+          ],
+          "examples": ["LINE Web 版", "Discord Web", "Slack"]
+        },
+        {
+          "name": "社交媒體平台",
+          "features": [
+            "上傳圖片、影片、留言、按讚",
+            "通知系統、使用者追蹤"
+          ],
+          "examples": ["Instagram", "Facebook", "X（Twitter）"]
+        }
+      ]
+    },
+    {
+      "category": "互動娛樂",
+      "examples": [
+        {
+          "name": "網頁遊戲",
+          "features": [
+            "HTML5 + Canvas / WebGL 遊戲",
+            "支援鍵盤、滑鼠、觸控操作"
+          ],
+          "examples": ["A Dark Room", "Slither.io", "Google 小恐龍遊戲"]
+        },
+        {
+          "name": "多媒體播放",
+          "features": [
+            "線上音樂、Podcast、影片播放器",
+            "播放清單、倍速、字幕"
+          ],
+          "examples": ["YouTube", "KKBOX", "Netflix Web"]
+        }
+      ]
+    },
+    {
+      "category": "工作與工具類",
+      "examples": [
+        {
+          "name": "計算機 / 表單工具",
+          "features": [
+            "稅務試算、學費估算、BMI 計算"
+          ],
+          "examples": ["銀行貸款試算", "學校學分表單"]
+        },
+        {
+          "name": "線上文書編輯",
+          "features": [
+            "即時儲存、多用戶編輯"
+          ],
+          "examples": ["Google Docs", "Notion", "HackMD"]
+        }
+      ]
+    },
+    {
+      "category": "資料互動與即時更新",
+      "examples": [
+        {
+          "name": "資料儀表板（Dashboard）",
+          "features": [
+            "即時顯示資料圖表（IoT、營運數據）",
+            "使用 D3.js、Chart.js、WebSocket"
+          ],
+          "examples": ["公司內部後台", "網站流量監控"]
+        },
+        {
+          "name": "地圖與位置應用",
+          "features": [
+            "顯示地點、導航、查詢周邊服務"
+          ],
+          "examples": ["Google Maps", "外送平台地圖追蹤"]
+        }
+      ]
+    },
+    {
+      "category": "安全與身分驗證",
+      "examples": [
+        {
+          "name": "登入 / 註冊系統",
+          "features": [
+            "使用者管理、JWT、OAuth 登入（Google, Facebook）"
+          ],
+          "examples": ["所有會員制網站"]
+        },
+        {
+          "name": "金融交易平台",
+          "features": [
+            "股票下單、匯率查詢、數位銀行"
+          ],
+          "examples": ["證券網路下單平台", "數位帳戶網頁"]
+        }
+      ]
+    },
+    {
+      "category": "跨平台應用（PWA）",
+      "examples": [
+        {
+          "name": "Web App / 行動 App 替代方案",
+          "features": [
+            "可安裝、離線使用、推播通知",
+            "可取代原生 App"
+          ],
+          "examples": ["Spotify Web", "Twitter Web", "Web-based POS 系統"]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "資訊發布": ["部落格", "新聞", "教學網"],
+    "商業交易": ["網購平台", "預約系統", "付款頁面"],
+    "社群互動": ["聊天室", "社群網站", "留言系統"],
+    "娛樂媒體": ["遊戲", "影片播放", "音樂平台"],
+    "生產力工具": ["表單", "文書編輯器", "數據儀表板"],
+    "移動與整合": ["地圖", "PWA 應用", "即時更新系統"]
+  }
+}
