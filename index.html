@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="tw">
+<html lang="zh-tw">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="這是一個網頁設計想法每日更新">
+  
   <title>二欄式版型示例</title>
   <style>
     body {
@@ -32,7 +34,12 @@
     footer {
       margin-top: auto;
     }
+	canvas { border: 1px solid #ccc; display: block; margin: 20px auto; }
   </style>
+  
+   <!-- 引入 Chart.js  繪畫-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
 </head>
 <body>
 
@@ -47,6 +54,8 @@
 	  <button id="updateContentBtn">更新content主內容</button>
 	  <button id="loadButton">載入應用內容json</button>
 	  <button id="weatherapi">載入應用內容weatherapi</button>
+	  <!-- 新增按鈕 -->
+      <button id="drawWeather">繪製天氣圖表</button>
     </aside>
     <section class="content">
       <h2>主要內容</h2>
@@ -63,5 +72,7 @@
   <script src="mainchange2.js"></script>
   <script src="buttonchangecontentdata1.js"></script>
   <script src="weatherapi1.js"></script>
+  <!-- 引入繪圖邏輯 -->
+  <script src="weatherChart.js"></script>
 </body>
 </html>
