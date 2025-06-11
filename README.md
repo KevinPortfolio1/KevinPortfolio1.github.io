@@ -5,4 +5,4 @@
   4.2025/06/08  open-meteo api 更新網頁內容  
   5.2025/06/09  open-meteo api 更新網頁內容(一周資訊)+Canvas  
   6.2025/06/10  html5的側邊攔aside css美化(運用bootrap 5)  
-  7.2025/06/11  加入favicon
+  7.2025/06/11  加入favicon + Alpine.js( Vue 的語法，寫 jQuery 做的事)預計方向
