@@ -60,7 +60,7 @@
       <button id="drawWeather" class="btn btn-warning w-100 mb-2">繪製天氣圖表</button>
 	  
 	  <!--Alpine.js 動態內容 -->
-      <button @click="mainTitle = '新的標題'; mainText = '這是透過新按鈕改變的內容。'" class="btn btn-dark w-100 mb-2">
+      <button @click="mainTitle = '新的標題'; mainText = '這是透過新按鈕改變的內容。'; loadWeatherAPI()" class="btn btn-dark w-100 mb-2">
         使用新按鈕更改內容
       </button>
 	  
