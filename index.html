@@ -57,10 +57,10 @@
 	  <button id="updateContentBtn" class="btn btn-success w-100 mb-2">更新content主內容</button>
 	  <button id="loadButton" class="btn btn-primary w-100 mb-2">載入應用內容json</button>
 	  <button id="weatherapi" class="btn btn-info w-100 mb-2">載入應用內容weatherapi</button>
-      <button id="drawWeather" class="btn btn-warning w-100">繪製天氣圖表</button>
+      <button id="drawWeather" class="btn btn-warning w-100 mb-2">繪製天氣圖表</button>
 	  
 	  <!--Alpine.js 動態內容 -->
-      <button @click="mainTitle = '新的標題'; mainText = '這是透過新按鈕改變的內容。'" class="btn btn-dark w-100">
+      <button @click="mainTitle = '新的標題'; mainText = '這是透過新按鈕改變的內容。'" class="btn btn-dark w-100 mb-2">
         使用新按鈕更改內容
       </button>
 	  
@@ -82,7 +82,7 @@
   <script src="mainchange2.js"></script>
   <script src="buttonchangecontentdata1.js"></script>
   <script src="weatherapi1.js"></script>
-  <script src="alpinechangecontent.js" defer></script>
+  <script src="alpinechangecontent.js"></script>
   <!-- 引入繪圖邏輯 -->
   <script src="weatherChart.js"></script>
   
