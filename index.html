@@ -15,12 +15,21 @@
       margin: 0;
       font-family: Arial, sans-serif;
     }
-    header, footer {
+	
+    header{
+      background-color: #333;
+      color: white;
+      text-align: left;
+      padding: 1em;
+    }
+	
+	footer {
       background-color: #333;
       color: white;
       text-align: center;
       padding: 1em;
     }
+	
     main {
       display: flex;
       min-height: 300px;
@@ -46,6 +55,13 @@
 
   <header>
     <h1 id="site-title">網站標題</h1>
+	<nav>
+    <ul>
+      <li><a href="#page">其他網頁</a></li>
+      <li><a href="#about">關於我們</a></li>
+      <li><a href="#services">服務</a></li>
+    </ul>
+  </nav>
   </header>
 
   <main class="container-fluid" x-data="mainContentHandler()">
