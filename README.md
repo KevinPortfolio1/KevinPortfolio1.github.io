@@ -8,4 +8,5 @@
   7.2025/06/11  加入favicon + Alpine.js( Vue 的語法，寫 jQuery 做的事)預計方向  
   8.2025/06/12  Alpine.js(x-data,@click,x-text) + button click event(多個方法) +  mainContentHandler function  
   9.2025/06/13  html5 在header內加入nav 和修改 footer的內容 + 把重複的js移除讓nav的開關正常  
+  10.2025/06/14 加入cookie
   
