@@ -10,5 +10,5 @@
   9.2025/06/13  html5 在header內加入nav 和修改 footer的內容 + 把重複的js移除讓nav的開關正常  
   10.2025/06/14 加入cookie  
   11.2025/06/15 cookie javascript能設定的項目  
-  12.2025/06/16 
+  12.2025/06/16 加入about.html,aboutscription.js,elementway.json(靜態網頁方向說明)  
   
