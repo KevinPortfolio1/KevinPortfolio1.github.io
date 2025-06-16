@@ -13,10 +13,10 @@ fetch('elementway.json')
           });
         }
 
-        populateList("structure-list", data["內容元素"]["結構性元素"], "元素", "說明");
-        populateList("content-list", data["內容元素"]["內容元素"], "元素", "說明");
-        populateList("style-list", data["內容元素"]["外觀與樣式"], "項目", "說明");
-        populateList("feature-list", data["內容元素"]["常見功能或設計元素"], "元素或功能", "說明");
+        populateList("structure-list", data["結構性元素"], "元素", "說明");
+        populateList("content-list", data["內容元素"], "元素", "說明");
+        populateList("style-list", data["外觀與樣式"], "項目", "說明");
+        populateList("feature-list", data["常見功能或設計元素"], "元素或功能", "說明");
       })
       .catch(error => {
         console.error("載入 JSON 失敗：", error);
