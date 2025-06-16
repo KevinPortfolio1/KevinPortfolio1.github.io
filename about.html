@@ -2,14 +2,45 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>關於靜態網頁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="這是一個網頁設計想法每日更新">
+  <title>靜態網頁方向</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" href="favicon.png" type="image/png">
   <style>
     h3 { margin-top: 1rem; }
   </style>
 </head>
 <body>
 
+   <header>
+    <h1 id="site-title">靜態網頁方向</h1>
+	
+	
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	
+	<div class="border border-light rounded p-2">
+	
+	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+	  Nav應用
+    </button>
+	
+	<!-- 折疊區塊 -->
+	<div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item"><a class="nav-link"  href="index.html">首頁</a></li>
+      <li class="nav-item"><a class="nav-link"  href="#about">關於我們</a></li>
+      <li class="nav-item"><a class="nav-link"  href="#services">服務</a></li>
+    </ul>
+	</div>
+	
+	</div>
+    </nav>
+	
+  </header>
+
+  <main class="container-fluid">
   <div class="container my-5">
     <h1 class="text-center mb-4">關於靜態網頁</h1>
     <p id="description" class="lead"></p>
@@ -31,8 +62,18 @@
       </div>
     </div>
   </div>
+   </main>
+   
+   <footer>
+    <p>&copy; 2025 此網頁每日有空就會更新</p>
+	<p>&copy; 2025 目前網頁方向為資訊....</p>
+	<p>&copy; 2025 隱私權未來加入cookie紀錄....</p>
+  </footer>
 
    <!-- 載入外部 JS -->
    <script src="aboutdescription.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  
+   
 </body>
 </html>
