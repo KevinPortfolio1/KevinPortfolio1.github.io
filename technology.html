@@ -11,6 +11,13 @@
     <link rel="icon" href="favicon.png" type="image/png">
   
   <style>
+    * {
+	   //content-box（預設）  寬高不含 padding 和 border
+	   //border-box           寬高包含 padding 和 border
+	
+		box-sizing: border-box;
+	}
+  
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -44,13 +51,13 @@
       width: 600px;
       height: 300px;
       margin: auto;
-      overflow: hidden;
+      overflow: hidden;                 /* 超出容器範圍的部分不顯示（避免圖片溢出） */
     }
     .slides {
-      display: flex;
+      display: flex;                    /* 超出容器範圍的部分不顯示（避免圖片溢出） */
       width: 100%;
       height: 100%;
-      transition: transform 0.5s ease;
+      transition: transform 0.5s ease; /* 平滑滑動切換效果 */
     }
     .slide {
       min-width: 100%;
@@ -59,35 +66,37 @@
     .slide img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: cover;                /* 圖片會裁切填滿容器，保持比例不變 */
     }
     .buttons {
       position: absolute;
       top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
+      width: 100%;                           
+      display: flex;                        /* 橫向排列左右按鈕 */
+      justify-content: space-between;       /* 左右貼邊 */
+      transform: translateY(-50%);            /* 微調讓按鈕完全垂直置中 */
     }
     .buttons button {
       background-color: rgba(0, 0, 0, 0.5);
       color: white;
       border: none;
-      padding: 10px;
-      cursor: pointer;
+      padding: 10px; 
+      cursor: pointer;                        /* 滑鼠移上去變小手 */
     }
+	
+	//底部小圓點的容器
     .dots {
-      text-align: center;
+      text-align: center;            /* 將所有點點置中對齊 */
       margin-top: 10px;
     }
     .dot {
-      display: inline-block;
+      display: inline-block;       /* 橫向排列 */
       height: 10px;
       width: 10px;
       margin: 0 5px;
       background-color: #bbb;
       border-radius: 50%;
-      cursor: pointer;
+      cursor: pointer;               /* 滑鼠變小手 */
     }
     .dot.active {
       background-color: #717171;
@@ -137,7 +146,11 @@
     <div class="row">
     <aside class="col-md-3 bg-light p-3 sidebar">
       <h2>側邊欄</h2>
-	  <p>這裡是側邊內容。</p>
+	  <p>輪播圖（Carousel）</p>
+	  <p>下拉選單</p>
+	  <p>返回頂部按鈕</p>
+	  <p>動畫效果</p>
+	  <p>表單（Form）</p>
     </aside>
 	
     <section class="col-md-9 p-3 content">
@@ -152,8 +165,7 @@
 		<button onclick="nextSlide()">)</button>
 	  </div>
 		</div>
-
-		<div class="dots" id="dots"></div>
+	  <div class="dots" id="dots"></div>
     </section>
 	</div>
   </main>
