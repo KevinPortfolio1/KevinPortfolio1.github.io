@@ -148,6 +148,7 @@
     <aside class="col-md-3 bg-light p-3 sidebar">
       <h2>側邊欄</h2>
 	  <p>輪播圖（Carousel）</p>
+	  <button onclick="showCarousel()">顯示輪播</button>
 	  <p>下拉選單</p>
 	  <p>返回頂部按鈕</p>
 	  <p>動畫效果</p>
@@ -156,7 +157,7 @@
 	
 	<div class="col-md-9 p-3">
     <section class="content">
-      <div class="carousel  mx-auto">
+      <div class="carousel  mx-auto d-none">
 		  <div class="slides" id="slides">
 			<div class="slide"><img src="star1.png" alt="圖片1"></div>
 			<div class="slide"><img src="star2.png" alt="圖片2"></div>
@@ -189,6 +190,14 @@
   <script src="writedatacookie.js"></script>
   <!-- cookie 輪播圖 -->
   <script src="tchimgswitch.js"></script>
+  
+  <script>
+  function showCarousel() {
+    const carousel = document.getElementById("carousel");
+    carousel.classList.remove("d-none");  // 移除隱藏
+    carousel.classList.add("d-block");    // 你也可以用 d-flex 視情況而定
+  }
+  </script>
   
   </body>
 </html>
