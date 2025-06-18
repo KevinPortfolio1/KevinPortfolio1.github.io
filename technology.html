@@ -145,6 +145,11 @@
 	
   </header>
 
+  <!--
+    Bootstrap 的 .row + .col-md-* 是基於 Flexbox 的橫向排列
+	但你又在外層 <main> 使用了 display: flex，這等於是「兩層 flex 同時作用」，
+	一不小心就會導致寬度錯亂、壓縮、重疊等問題。
+  -->
   <main class="container-fluid px-0">
     <div class="row gx-0">
 	
@@ -160,7 +165,7 @@
 	
 	<div class="col-md-9 p-3">
     <section class="content">
-      <div class="carousel  mx-auto d-none">
+      <div class="carousel  mx-auto d-none"  id="carousel">
 		  <div class="slides" id="slides">
 			<div class="slide"><img src="star1.png" alt="圖片1"></div>
 			<div class="slide"><img src="star2.png" alt="圖片2"></div>
@@ -171,7 +176,7 @@
 			<button onclick="nextSlide()">)</button>
 		  </div>
 	  </div>
-	  <div class="dots" id="dots"></div>
+	  <div class="dots d-none" id="dots"></div>
     </section>
 	</div>
 	
@@ -197,8 +202,14 @@
   <script>
   function showCarousel() {
     const carousel = document.getElementById("carousel");
+	const dots = document.getElementById("dots");
+	
     carousel.classList.remove("d-none");  // 移除隱藏
     carousel.classList.add("d-block");    // 你也可以用 d-flex 視情況而定
+	
+	dots.classList.remove("d-none");  // 移除隱藏
+    dots.classList.add("d-block");    // 你也可以用 d-flex 視情況而定
+	
   }
   </script>
   
