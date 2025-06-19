@@ -13,5 +13,6 @@
   12.2025/06/16 加入about.html,aboutscription.js,elementway.json(靜態網頁方向說明)  
   13.2025/06/17 加入techtechnology.html,tchimgswitch.js,star image(輪播圖),css 寬度有時用百分比置中有反應  
   14.2025/06/18 移除css main的flex使bootstrap的寬度排版不會重疊效果導致寬度出問題,並加上隱藏與顯示功能  
+  15.2025/06/19 加入網頁相關功能元素(下拉選單,form,動畫效果),animate css和bootstrap css運用  
   
   
