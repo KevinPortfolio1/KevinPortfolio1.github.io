@@ -9,7 +9,8 @@
   <!-- Favicon 範例 -->
   <!-- 可選：PNG 格式 -->
     <link rel="icon" href="favicon.png" type="image/png">
-  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
   <style>
     * {
 	   /*content-box（預設）  寬高不含 padding 和 border*/
@@ -192,6 +193,37 @@
 		  </select>
 	  </div>
 	  
+	  
+	  <div class="animaleffect mx-auto d-none animate__animated text-center p-4 border rounded shadow" id="animaleffect">
+	      <h4 class="mb-3">動物！?</h4>
+		  <img src="cat.png" class="img-fluid rounded mb-3" alt="可愛小貓">
+		  <p>可愛的小貓咪</p>
+	  </div>
+	  
+	  <div class="formdatacontent mx-auto d-none" id="formdatacontent">
+			<form>
+				<h4 class="mb-4 text-center">輸入的測試資料</h4>
+
+				<div class="mb-3">
+				  <label for="inputName" class="form-label">name</label>
+				  <input type="text" class="form-control" id="inputName" placeholder="測試用inputName" required>
+				</div>
+
+				<div class="mb-3">
+				  <label for="inputEmail" class="form-label">code</label>
+				  <input type="email" class="form-control" id="inputEmail" placeholder="測試用inputcode" required>
+				</div>
+
+				<button type="submit" class="btn btn-primary w-100">送出</button>
+		    </form>
+	  </div>
+	  
+	  <div class="jumptop mx-auto d-none position-fixed bottom-0 end-0 mb-4 me-4 d-none animate__animated" id="jumptop">
+	     <button class="btn btn-secondary shadow rounded-circle p-3" onclick="scrollToTop()" title="回到頂端">
+			⬆️
+		</button>
+	  </div>
+	  
     </section>
 	</div>
 	
@@ -231,9 +263,31 @@
 	
     carousel.classList.remove("d-none");  // 移除隱藏
     carousel.classList.add("d-block");    // 你也可以用 d-flex 視情況而定
-	
-	
   }
+  function showCarousel3() {
+    const carousel = document.getElementById("animaleffect");
+	
+    carousel.classList.remove("d-none");  // 移除隱藏
+    carousel.classList.add("d-block");    // 你也可以用 d-flex 視情況而定
+  }
+  function showCarousel4() {
+    const carousel = document.getElementById("jumptop");
+	
+    carousel.classList.remove("d-none");  // 移除隱藏
+    carousel.classList.add("d-block");    // 你也可以用 d-flex 視情況而定
+  }
+  function showCarousel5() {
+    const carousel = document.getElementById("formdatacontent");
+	
+    carousel.classList.remove("d-none");  // 移除隱藏
+    carousel.classList.add("d-block");    // 你也可以用 d-flex 視情況而定
+  }
+  
+  // 回到頂部功能
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  
   </script>
   
   </body>
