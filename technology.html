@@ -158,9 +158,13 @@
 	  <p>輪播圖（Carousel）</p>
 	  <button onclick="showCarousel()">顯示輪播</button>
 	  <p>下拉選單</p>
+	  <button onclick="showCarousel2()">顯示下拉選單</button>
 	  <p>返回頂部按鈕</p>
+	  <button onclick="showCarousel3()">顯示返回頂部按鈕</button>
 	  <p>動畫效果</p>
+	  <button onclick="showCarousel4()">顯示動畫效果</button>
 	  <p>表單（Form）</p>
+	  <button onclick="showCarousel5()">顯示表單（Form）</button>
     </aside>
 	
 	<div class="col-md-9 p-3">
@@ -177,6 +181,17 @@
 		  </div>
 	  </div>
 	  <div class="dots d-none" id="dots"></div>
+	  
+	  <div class="selectcontent mx-auto d-none" id="selectcontent">
+	      <label for="exampleSelect" class="form-label">選擇項目</label>
+		  <select class="form-select" id="exampleSelect">
+			<option selected>請選擇一個項目</option>
+			<option value="1">選項一</option>
+			<option value="2">選項二</option>
+			<option value="3">選項三</option>
+		  </select>
+	  </div>
+	  
     </section>
 	</div>
 	
@@ -209,6 +224,14 @@
 	
 	dots.classList.remove("d-none");  // 移除隱藏
     dots.classList.add("d-block");    // 你也可以用 d-flex 視情況而定
+	
+  }
+  function showCarousel2() {
+    const carousel = document.getElementById("selectcontent");
+	
+    carousel.classList.remove("d-none");  // 移除隱藏
+    carousel.classList.add("d-block");    // 你也可以用 d-flex 視情況而定
+	
 	
   }
   </script>
