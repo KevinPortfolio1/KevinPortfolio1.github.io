@@ -154,19 +154,22 @@
         <div class="row">
             <div class="col-12">
                 <h3>解法</h3>
-                <pre><code>class Solution {
-							public int[] twoSum(int[] nums, int target) {
-								for(int i=0;i<nums.length;i++){
-									int diff = target - nums[i];
-									for(int j=0;j<nums.length;j++){
-										if(nums[j] == diff && j != i){
-											return new int[]{i,j};
-										}
+                <pre><code>
+					class Solution {
+						public int[] twoSum(int[] nums, int target) {
+							for(int i = 0; i < nums.length; i++) {
+								int diff = target - nums[i];
+								for(int j = 0; j < nums.length; j++) {
+									if(nums[j] == diff && j != i) {
+										return new int[]{i, j};
 									}
 								}
-								return null;
 							}
-							}</code></pre>
+							return null;
+						}
+					}
+				</code></pre>
+
                 <p><strong>步驟:</strong></p>
                 <ul>
                     <li>按造順序選擇陣列數值與target相減獲取另一個值 diff</li>
@@ -178,8 +181,8 @@
                 <h5>優化建議:</h5>
                 <p>通過使用 <code>HashMap</code> 來降低時間複雜度。將 <code>HashMap</code> 用來記錄已經遍歷過的元素，可以讓查找差值 diff 的操作變成 O(1)，進而將時間複雜度優化到 O(n)</p>
 
-                <pre><code>import java.util.HashMap;
-
+                <pre><code>
+				import java.util.HashMap;
 							class Solution {
 								public int[] twoSum(int[] nums, int target) {
 									HashMap<Integer, Integer> map = new HashMap<>();
