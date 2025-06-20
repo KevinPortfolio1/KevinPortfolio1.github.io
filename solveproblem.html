@@ -18,8 +18,8 @@
     }
 
     footer {
-      background-color: #f8f9fa;
-      color: #6c757d;
+      background-color: #343a40;
+      color: white;
       padding: 20px 0;
       text-align: center;
     }
@@ -66,12 +66,116 @@
 	
     <aside class="col-md-3 bg-light p-3 sidebar">
       <h2>側邊欄</h2>
+	  <p>1. Two Sum</p>
 	 
     </aside>
 	
 	
     <section class="content col-md-9 p-3">
-     
+        <p>
+		英文
+		
+		Given an array of integers nums and an integer target, 
+		return indices of the two numbers such that they add up to target.
+		You may assume that each input would have exactly one solution, 
+		and you may not use the same element twice.
+
+		You can return the answer in any order.
+
+ 
+
+		Example 1:
+
+		Input: nums = [2,7,11,15], target = 9
+		Output: [0,1]
+		Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+		Example 2:
+
+		Input: nums = [3,2,4], target = 6
+		Output: [1,2]
+		Example 3:
+
+		Input: nums = [3,3], target = 6
+		Output: [0,1]
+		 
+
+		Constraints:
+
+		2 <= nums.length <= 104
+		-109 <= nums[i] <= 109
+		-109 <= target <= 109
+		Only one valid answer exists.
+		 
+
+		Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
+
+		</p>
+		
+		 <p>
+		   中文
+		
+            給定一個整數array nums 和一個整數 target，
+			傳回這兩個數字的索引，使它們總和等於 target。
+			可以假設每個輸入只有一個解，
+			不能重複使用同一個元素。
+
+			可以按任意順序返回答案。
+ 
+			能想出一個時間複雜度小於 O(n2) 的演算法嗎？
+
+		</p>
+		
+		<p>
+		    解法
+			
+			class Solution {
+				public int[] twoSum(int[] nums, int target) {
+
+					for(int i=0;i<nums.length;i++){
+					  int diff=target-nums[i];
+					  for(int j=0;j<nums.length;j++){
+						  if(nums[j]==diff && j!=i){
+							  return new int[]{i,j};
+						  }
+					  }
+					}
+					return null;
+				}
+			}
+			
+			步驟1.按造順序 選擇陣列數值與target相減 獲取另一個值diff
+			步驟2.按造順序 找出另一個值diff
+			步驟3.找出後回傳一個新陣列[i,j]
+			
+			rumtime 112ms,memory 44.93mb  時間複雜度是 O(n²) ,記憶體複雜度：O(1)
+			
+			優化建議： 
+			通過使用HashMap來降低時間複雜度。
+			將HashMap用來記錄已經遍歷過的元素，可以讓查找差值 diff 的操作變成 O(1)，進而將時間複雜度優化到 O(n)
+			
+			import java.util.HashMap;
+
+			class Solution {
+				public int[] twoSum(int[] nums, int target) {
+				
+					HashMap<Integer, Integer> map = new HashMap<>();
+					for (int i = 0; i < nums.length; i++) {
+						int diff = target - nums[i];
+						
+						if (map.containsKey(diff)) {
+							return new int[]{map.get(diff), i};
+						}
+						
+						map.put(nums[i], i);
+					}
+					
+					return null;
+				}
+			}
+
+		    優化後的時間複雜度：O(n)
+			優化後的記憶體複雜度：O(n) (需要額外的HashMap來儲存元素及其索引)
+		</p>
 	 
 	  
     </section>
