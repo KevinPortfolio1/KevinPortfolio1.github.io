@@ -16,5 +16,7 @@
   15.2025/06/19 加入網頁相關功能元素(下拉選單,form,動畫效果),animate css和bootstrap css運用  
   16.2025/06/20 加入新的網頁(解題Leetcode)與更改方向(footer)  
   17.2025/06/21 設計更新題目與解答網頁內容的資料結構  
+  18.2025/06/22 solveproblem.html 修改section內容,leetocdequestion.json,dynamicchange.js 加入,達成動態更改  
+  
   
   
