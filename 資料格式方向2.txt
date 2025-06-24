@@ -1,0 +1,406 @@
+想做的是：
+
+    把一般文字檔裡的題目說明、範例、約束、解法等資訊
+    轉成結構化的 JSON 格式（像你給的範例資料）
+    並且設計一個資料格式（JSON schema），讓程式（C#、Python 等）方便解析和使用
+    並且想了解用 C# 或 Python 撰寫的「轉換步驟範例」
+
+一、推薦的 JSON 資料格式設計
+
+{
+  "date": "2025-06-21",
+  "title": "Two Sum Problem",
+  "languages": ["en", "zh"],
+  "description": {
+    "en": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target...",
+    "zh": "給定一個整數陣列 nums 和一個整數 target，傳回這兩個數字的索引..."
+  },
+  "examples": [
+    {
+      "input": "nums = [2,7,11,15], target = 9",
+      "output": "[0,1]",
+      "explanation_en": "Because nums[0] + nums[1] == 9, we return [0, 1].",
+      "explanation_zh": "因為 nums[0] + nums[1] == 9，我們返回 [0, 1]。"
+    }
+  ],
+  "constraints": [
+    "2 <= nums.length <= 10^4",
+    "-10^9 <= nums[i] <= 10^9",
+    "Only one valid answer exists."
+  ],
+  "followUp": {
+    "en": "Can you come up with an algorithm that is less than O(n^2) time complexity?",
+    "zh": "你能想出一個時間複雜度小於 O(n²) 的演算法嗎？"
+  },
+  "solutions": [
+    {
+      "type": "Brute Force",
+      "language": "Java",
+      "code": "...",
+      "explanation": "...",
+      "timeComplexity": "O(n^2)",
+      "spaceComplexity": "O(1)"
+    },
+    {
+      "type": "Optimized",
+      "language": "Java",
+      "code": "...",
+      "explanation": "...",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(n)"
+    }
+  ]
+}
+
+二、用 C# 或 Python 將文字檔轉成這樣的 JSON 的步驟範例
+
+1. 文字檔範例（假設為 markdown 或純文字）
+
+Title: Two Sum Problem
+Date: 2025-06-21
+
+Description (en):
+Given an array of integers nums and an integer target, return indices...
+
+Description (zh):
+給定一個整數陣列 nums 和一個整數 target，傳回...
+
+Examples:
+1)
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation (en): Because nums[0] + nums[1] == 9, we return [0, 1].
+Explanation (zh): 因為 nums[0] + nums[1] == 9，我們返回 [0, 1]。
+
+Constraints:
+- 2 <= nums.length <= 10^4
+- -10^9 <= nums[i] <= 10^9
+- Only one valid answer exists.
+
+Follow-up (en): Can you come up with...
+Follow-up (zh): 你能想出...
+
+Solutions:
+Brute Force (Java):
+...
+Optimized (Java):
+...
+
+2. Python 範例：讀檔並用正則或字串切割，建立 JSON 物件
+
+import json
+
+def parse_text_to_json(filepath):
+    with open(filepath, 'r', encoding='utf-8') as f:
+        lines = f.readlines()
+
+    data = {
+        "title": "",
+        "date": "",
+        "description": {},
+        "examples": [],
+        "constraints": [],
+        "followUp": {},
+        "solutions": []
+    }
+
+    current_section = None
+    example = {}
+
+    for line in lines:
+        line = line.strip()
+
+        if line.startswith("Title:"):
+            data["title"] = line[len("Title:"):].strip()
+        elif line.startswith("Date:"):
+            data["date"] = line[len("Date:"):].strip()
+        elif line.startswith("Description (en):"):
+            current_section = "description_en"
+            data["description"]["en"] = ""
+        elif line.startswith("Description (zh):"):
+            current_section = "description_zh"
+            data["description"]["zh"] = ""
+        elif line.startswith("Examples:"):
+            current_section = "examples"
+        elif line.startswith("Constraints:"):
+            current_section = "constraints"
+        elif line.startswith("Follow-up (en):"):
+            current_section = "followup_en"
+        elif line.startswith("Follow-up (zh):"):
+            current_section = "followup_zh"
+        elif line.startswith("Solutions:"):
+            current_section = "solutions"
+        elif current_section == "description_en":
+            data["description"]["en"] += line + " "
+        elif current_section == "description_zh":
+            data["description"]["zh"] += line + " "
+        elif current_section == "constraints" and line.startswith("- "):
+            data["constraints"].append(line[2:].strip())
+        elif current_section == "followup_en":
+            data["followUp"]["en"] = line
+        elif current_section == "followup_zh":
+            data["followUp"]["zh"] = line
+        elif current_section == "examples":
+            if line.startswith("Input:"):
+                if example:
+                    data["examples"].append(example)
+                    example = {}
+                example["input"] = line[len("Input:"):].strip()
+            elif line.startswith("Output:"):
+                example["output"] = line[len("Output:"):].strip()
+            elif line.startswith("Explanation (en):"):
+                example["explanation_en"] = line[len("Explanation (en):"):].strip()
+            elif line.startswith("Explanation (zh):"):
+                example["explanation_zh"] = line[len("Explanation (zh):"):].strip()
+        elif current_section == "solutions":
+            # For simplicity, can accumulate all solution codes under a list or dictionary.
+            # Real情況可能需要更複雜的 parsing。
+            pass
+
+    # 把最後一個 example 加入
+    if example:
+        data["examples"].append(example)
+
+    # 去除字串尾端多餘空白
+    if "en" in data["description"]:
+        data["description"]["en"] = data["description"]["en"].strip()
+    if "zh" in data["description"]:
+        data["description"]["zh"] = data["description"]["zh"].strip()
+
+    return data
+
+# 用法
+json_data = parse_text_to_json("two_sum.txt")
+print(json.dumps(json_data, ensure_ascii=False, indent=2))
+
+3. C# 簡單示意（用 String.Split 和 Regex 來擷取）
+
+using System;
+using System.IO;
+using System.Text.Json;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        string[] lines = File.ReadAllLines("two_sum.txt");
+        var data = new Dictionary<string, object>();
+        var description = new Dictionary<string, string>();
+        var followUp = new Dictionary<string, string>();
+        var examples = new List<Dictionary<string, string>>();
+        var constraints = new List<string>();
+
+        string currentSection = "";
+        Dictionary<string, string> example = null;
+
+        foreach (var lineRaw in lines)
+        {
+            string line = lineRaw.Trim();
+            if (line.StartsWith("Title:"))
+            {
+                data["title"] = line.Substring(6).Trim();
+            }
+            else if (line.StartsWith("Date:"))
+            {
+                data["date"] = line.Substring(5).Trim();
+            }
+            else if (line.StartsWith("Description (en):"))
+            {
+                currentSection = "description_en";
+                description["en"] = "";
+            }
+            else if (line.StartsWith("Description (zh):"))
+            {
+                currentSection = "description_zh";
+                description["zh"] = "";
+            }
+            else if (line.StartsWith("Examples:"))
+            {
+                currentSection = "examples";
+            }
+            else if (line.StartsWith("Constraints:"))
+            {
+                currentSection = "constraints";
+            }
+            else if (line.StartsWith("Follow-up (en):"))
+            {
+                currentSection = "followup_en";
+            }
+            else if (line.StartsWith("Follow-up (zh):"))
+            {
+                currentSection = "followup_zh";
+            }
+            else if (currentSection == "description_en")
+            {
+                description["en"] += line + " ";
+            }
+            else if (currentSection == "description_zh")
+            {
+                description["zh"] += line + " ";
+            }
+            else if (currentSection == "constraints" && line.StartsWith("- "))
+            {
+                constraints.Add(line.Substring(2));
+            }
+            else if (currentSection == "followup_en")
+            {
+                followUp["en"] = line;
+            }
+            else if (currentSection == "followup_zh")
+            {
+                followUp["zh"] = line;
+            }
+            else if (currentSection == "examples")
+            {
+                if (line.StartsWith("Input:"))
+                {
+                    if (example != null)
+                    {
+                        examples.Add(example);
+                    }
+                    example = new Dictionary<string, string>();
+                    example["input"] = line.Substring(6).Trim();
+                }
+                else if (line.StartsWith("Output:"))
+                {
+                    example["output"] = line.Substring(7).Trim();
+                }
+                else if (line.StartsWith("Explanation (en):"))
+                {
+                    example["explanation_en"] = line.Substring(15).Trim();
+                }
+                else if (line.StartsWith("Explanation (zh):"))
+                {
+                    example["explanation_zh"] = line.Substring(15).Trim();
+                }
+            }
+        }
+        if (example != null)
+            examples.Add(example);
+
+        description["en"] = description.ContainsKey("en") ? description["en"].Trim() : "";
+        description["zh"] = description.ContainsKey("zh") ? description["zh"].Trim() : "";
+
+        data["description"] = description;
+        data["constraints"] = constraints;
+        data["followUp"] = followUp;
+        data["examples"] = examples;
+
+        string json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
+        Console.WriteLine(json);
+    }
+}
+
+三、總結
+
+    JSON設計：用標題、日期、說明（多語系）、範例、約束、延伸問題、解法清晰分類
+    解析步驟：讀檔後依標題字串判斷 section，依規則擷取欄位，逐行累積內容
+    程式語言：Python 字串與正則方便快速，C# 則可利用強型別結構與 System.Text.Json 輸出
+	
+		1. 純文字格式化（例如純文字排版）
+
+		如果只是想讓純文字檔（.txt）內容在閱讀時有清晰結構，可以自己加一些標籤或符號，像：
+
+			用 # 標題 表示章節標題
+
+			用 - 或 * 表示列表項目
+
+			用 --- 分隔段落
+
+			用 【】 包含重要段落
+
+			用空行或縮排區分段落
+
+		範例：
+
+		# 兩數之和問題 (Two Sum Problem)
+
+		【描述】
+		給定整數陣列 nums 和目標數字 target，找出兩數索引使其總和等於 target。
+
+		【範例】
+		- 輸入：nums = [2,7,11,15], target = 9
+		- 輸出：[0,1]
+		- 解釋：因 nums[0] + nums[1] = 9
+
+		---
+
+		【限制】
+		- 2 <= nums.length <= 10^4
+		- -10^9 <= nums[i], target <= 10^9
+		- 僅有一個有效答案
+
+		這種純文字格式是最簡單的做法，但不具有語意標籤，只是方便人閱讀。
+		2. 使用標記語言（例如 Markdown、HTML）
+
+		如果要讓純文字檔具有格式化效果，可以改用 Markdown 格式，純文字檔後綴仍是 .md 或 .txt，但內含標籤：
+
+		# 兩數之和問題 (Two Sum Problem)
+
+		## 描述
+		給定整數陣列 nums 和目標數字 target，找出兩數索引使其總和等於 target。
+
+		## 範例
+		- 輸入：nums = [2,7,11,15], target = 9
+		- 輸出：[0,1]
+		- 解釋：因 nums[0] + nums[1] = 9
+
+		---
+
+		## 限制
+		- 2 <= nums.length <= 10^4
+		- -10^9 <= nums[i], target <= 10^9
+		- 僅有一個有效答案
+
+		這樣用支持 Markdown 的編輯器（VSCode、GitHub、Typora）就會呈現漂亮的格式。
+		3. 用結構化標籤標示（自訂標籤或 XML、JSON）
+
+		如果你想在純文字檔裡儲存結構化資料（方便程式解析），可以用類似 XML 標籤或 JSON 格式：
+
+		XML 範例
+
+		<problem>
+		  <title>兩數之和問題</title>
+		  <description>給定整數陣列 nums 和目標數字 target...</description>
+		  <examples>
+			<example>
+			  <input>nums = [2,7,11,15], target = 9</input>
+			  <output>[0,1]</output>
+			</example>
+		  </examples>
+		</problem>
+
+		JSON 範例
+
+		{
+		  "title": "兩數之和問題",
+		  "description": "給定整數陣列 nums 和目標數字 target...",
+		  "examples": [
+			{
+			  "input": "nums = [2,7,11,15], target = 9",
+			  "output": "[0,1]"
+			}
+		  ]
+		}
+
+		這種格式最適合機器讀寫與轉換。
+		4. TXT檔中用自訂標籤（類似自訂標記）
+
+		有些系統會用自訂標籤在純文字檔中分隔區塊，例如：
+
+		[Title] 兩數之和問題
+
+		[Description]
+		給定整數陣列 nums 和目標數字 target...
+
+		[Example1]
+		Input: nums = [2,7,11,15], target = 9
+		Output: [0,1]
+
+		這種做法需要寫程式解析這些自訂標籤。
+		小結
+		用途	建議格式	備註
+		讓人閱讀清楚	Markdown或帶簡易標籤的純文字	易於編輯、展示
+		程式讀取結構化資料	JSON 或 XML	易於轉換成物件，做進一步處理
+		純純文本排版	自訂標籤或分隔符	方便人類與程式簡單解析
