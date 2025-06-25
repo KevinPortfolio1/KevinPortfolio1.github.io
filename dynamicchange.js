@@ -1,60 +1,47 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const twoSumBtn = document.getElementById("load-two-sum");
+<script>
+  let problemsData = null;  // 全域變數存放 json 內容
 
-  twoSumBtn.addEventListener("click", async () => {
-    try {
-      const res = await fetch('leetocdequestion.json');
-      if (!res.ok) throw new Error("無法載入資料");
-      const data = await res.json();
+  // 頁面載入時，先 fetch JSON 檔案
+  fetch('merged.json')
+    .then(response => response.json())
+    .then(data => {
+      problemsData = data.problems; // 取出 problems 陣列
+    })
+    .catch(err => console.error('Error loading JSON:', err));
 
-      const container = document.getElementById("leetcode-content");
+  // 點擊事件設定
+  document.querySelectorAll('.sidebar p').forEach(p => {
+    p.addEventListener('click', () => {
+      const dateId = p.id; // 取得被點擊的 p 的 id (日期)
+      if (!problemsData) {
+        alert('問題資料尚未載入完成，請稍後再試');
+        return;
+      }
 
-      const html = `
-        <h1 class="text-center mb-4">${data.title}</h1>
-        <div class="mb-4">
-          <h3>題目說明</h3>
-          <p>${data.description.zh}</p>
-        </div>
+      // 從陣列中找到對應日期的題目物件
+      const problem = problemsData.find(item => item.date === dateId);
 
-        <div class="mb-4">
-          <h3>範例</h3>
-          ${data.examples.map(ex => `
-            <pre><code>
-輸入: ${ex.input}
-輸出: ${ex.output}
-${ex.explanation_zh ? "說明: " + ex.explanation_zh : ""}
-            </code></pre>
-          `).join('')}
-        </div>
-
-        <div class="mb-4">
-          <h3>約束條件</h3>
+      if (problem) {
+        // 簡單輸出標題和描述
+        let html = `
+          <h3>${problem.title}</h3>
+          <p>${problem.description.en}</p>
+          <h4>Example:</h4>
           <ul>
-            ${data.constraints.map(c => `<li>${c}</li>`).join('')}
-          </ul>
-        </div>
+        `;
 
-        <div class="mb-4">
-          <h3>延伸問題</h3>
-          <p>${data.followUp.zh}</p>
-        </div>
+        problem.examples.forEach(ex => {
+          html += `<li><strong>Input:</strong> ${ex.input}<br>
+                   <strong>Output:</strong> ${ex.output}<br>
+                   <strong>Explanation:</strong> ${ex.explanation_en || ''}</li>`;
+        });
 
-        <div class="mb-4">
-          <h3>解法</h3>
-          ${data.solutions.map(sol => `
-            <h5>${sol.type} 解法 - ${sol.language}</h5>
-            <pre><code>${sol.code}</code></pre>
-            ${sol.steps ? `<strong>步驟:</strong><ul>${sol.steps.map(step => `<li>${step}</li>`).join('')}</ul>` : ''}
-            <p><strong>時間複雜度:</strong> ${sol.timeComplexity}, <strong>記憶體複雜度:</strong> ${sol.spaceComplexity}</p>
-            ${sol.explanation ? `<p><em>說明:</em> ${sol.explanation}</p>` : ''}
-          `).join('')}
-        </div>
-      `;
+        html += '</ul>';
 
-      container.innerHTML = html;
-
-    } catch (error) {
-      console.error("載入 JSON 發生錯誤:", error);
-    }
+        document.getElementById('leetcode-content').innerHTML = html;
+      } else {
+        document.getElementById('leetcode-content').innerHTML = '<p>找不到對應題目資料</p>';
+      }
+    });
   });
-});
+</script>
