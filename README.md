@@ -17,7 +17,7 @@
   16.2025/06/20 加入新的網頁(解題Leetcode)與更改方向(footer)  
   17.2025/06/21 設計更新題目與解答網頁內容的資料結構  
   18.2025/06/22 solveproblem.html 修改section內容,leetocdequestion.json,dynamicchange.js 加入,達成動態更改  
-  19.2025/06/23 以兩個json檔合併為新的範本,還有c#合併的程式範例,預計gui或文字檔為原檔再添加入更新的資料為目標  
+  19.2025/06/23 以兩個json檔合併為新的範本,還有c#合併的程式範例,預計gui或文字檔為原檔添加入更新的資料為目標  
   20.2025/06/24 從txt檔設定格式,再用其他方法轉成js可以讀取的格式檔案  
   21.2025/06/25 json檔案合併修正,javascript讀取修正,solveproblem.html添加側邊攔內容,json與javascript還能再修改  
   
