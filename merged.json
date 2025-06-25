@@ -9,14 +9,14 @@
       ],
       "description": {
         "en": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice. You can return the answer in any order.",
-        "zh": "\u7D66\u5B9A\u4E00\u500B\u6574\u6578\u9663\u5217 nums \u548C\u4E00\u500B\u6574\u6578 target\uFF0C\u50B3\u56DE\u9019\u5169\u500B\u6578\u5B57\u7684\u7D22\u5F15\uFF0C\u4F7F\u5B83\u5011\u7E3D\u548C\u7B49\u65BC target\u3002\u53EF\u4EE5\u5047\u8A2D\u6BCF\u500B\u8F38\u5165\u53EA\u6709\u4E00\u500B\u89E3\uFF0C\u4E0D\u80FD\u91CD\u8907\u4F7F\u7528\u540C\u4E00\u500B\u5143\u7D20\u3002\u53EF\u4EE5\u6309\u4EFB\u610F\u9806\u5E8F\u8FD4\u56DE\u7B54\u6848\u3002"
+        "zh": "給定一個整數陣列 nums 和一個整數 target，傳回這兩個數字的索引，使它們總和等於 target。可以假設每個輸入只有一個解，不能重複使用同一個元素。可以按任意順序回傳答案。"
       },
       "examples": [
         {
           "input": "nums = [2,7,11,15], target = 9",
           "output": "[0,1]",
-          "explanation_en": "Because nums[0] \u002B nums[1] == 9, we return [0, 1].",
-          "explanation_zh": "\u56E0\u70BA nums[0] \u002B nums[1] == 9, \u6211\u5011\u8FD4\u56DE [0, 1]\u3002"
+          "explanation_en": "Because nums[0] + nums[1] == 9, we return [0, 1].",
+          "explanation_zh": "因為 nums[0] + nums[1] == 9，我們返回 [0, 1]。"
         },
         {
           "input": "nums = [3,2,4], target = 6",
@@ -28,33 +28,33 @@
         }
       ],
       "constraints": [
-        "2 \u003C= nums.length \u003C= 10^4",
-        "-10^9 \u003C= nums[i] \u003C= 10^9",
-        "-10^9 \u003C= target \u003C= 10^9",
+        "2 <= nums.length <= 10^4",
+        "-10^9 <= nums[i] <= 10^9",
+        "-10^9 <= target <= 10^9",
         "Only one valid answer exists."
       ],
       "followUp": {
-        "en": "Can you come up with an algorithm that is less than O(n\u00B2) time complexity?",
-        "zh": "\u4F60\u80FD\u60F3\u51FA\u4E00\u500B\u6642\u9593\u8907\u96DC\u5EA6\u5C0F\u65BC O(n\u00B2) \u7684\u6F14\u7B97\u6CD5\u55CE\uFF1F"
+        "en": "Can you come up with an algorithm that is less than O(n²) time complexity?",
+        "zh": "你能想出一個時間複雜度小於 O(n²) 的演算法嗎？"
       },
       "solutions": [
         {
           "type": "Brute Force",
           "language": "Java",
-          "code": "class Solution {\n    public int[] twoSum(int[] nums, int target) {\n        for(int i = 0; i \u003C nums.length; i\u002B\u002B) {\n            int diff = target - nums[i];\n            for(int j = 0; j \u003C nums.length; j\u002B\u002B) {\n                if(nums[j] == diff \u0026\u0026 j != i) {\n                    return new int[]{i, j};\n                }\n            }\n        }\n        return null;\n    }\n}",
+          "code": "class Solution {\n    public int[] twoSum(int[] nums, int target) {\n        for(int i = 0; i < nums.length; i++) {\n            int diff = target - nums[i];\n            for(int j = 0; j < nums.length; j++) {\n                if(nums[j] == diff && j != i) {\n                    return new int[]{i, j};\n                }\n            }\n        }\n        return null;\n    }\n}",
           "steps": [
-            "\u6309\u9020\u9806\u5E8F\u9078\u64C7\u9663\u5217\u6578\u503C\u8207 target \u76F8\u6E1B\u7372\u53D6\u53E6\u4E00\u500B\u503C diff",
-            "\u6309\u9020\u9806\u5E8F\u627E\u51FA\u53E6\u4E00\u500B\u503C diff",
-            "\u627E\u51FA\u5F8C\u56DE\u50B3\u4E00\u500B\u65B0\u9663\u5217 [i,j]"
+            "按造順序選擇陣列數值與 target 相減取得另一個值 diff",
+            "按造順序找出另一個值 diff",
+            "找出後回傳一個新陣列 [i,j]"
           ],
-          "timeComplexity": "O(n\u00B2)",
+          "timeComplexity": "O(n²)",
           "spaceComplexity": "O(1)"
         },
         {
           "type": "Optimized",
           "language": "Java",
-          "code": "import java.util.HashMap;\n\nclass Solution {\n    public int[] twoSum(int[] nums, int target) {\n        HashMap\u003CInteger, Integer\u003E map = new HashMap\u003C\u003E();\n        for (int i = 0; i \u003C nums.length; i\u002B\u002B) {\n            int diff = target - nums[i];\n            if (map.containsKey(diff)) {\n                return new int[]{map.get(diff), i};\n            }\n            map.put(nums[i], i);\n        }\n        return null;\n    }\n}",
-          "explanation": "\u901A\u904E HashMap \u8A18\u9304\u5DF2\u904D\u6B77\u7684\u5143\u7D20\uFF0C\u4F7F\u67E5\u627E\u5DEE\u503C\u8B8A\u70BA O(1)",
+          "code": "import java.util.HashMap;\n\nclass Solution {\n    public int[] twoSum(int[] nums, int target) {\n        HashMap<Integer, Integer> map = new HashMap<>();\n        for (int i = 0; i < nums.length; i++) {\n            int diff = target - nums[i];\n            if (map.containsKey(diff)) {\n                return new int[]{map.get(diff), i};\n            }\n            map.put(nums[i], i);\n        }\n        return null;\n    }\n}",
+          "explanation": "通過 HashMap 記錄已遍歷的元素，使查找差值變為 O(1)",
           "timeComplexity": "O(n)",
           "spaceComplexity": "O(n)"
         }
@@ -63,45 +63,47 @@
     {
       "title": "Palindrome Number",
       "date": "2025-06-25",
-      "description_en": "Given an integer x, return true if x is a palindrome, and false otherwise.",
-      "description_zh": "\u7D66\u5B9A\u4E00\u500B\u6574\u6578 x\uFF0C\u5982\u679C x \u662F\u56DE\u6587\uFF0C\u5247\u50B3\u56DE true\uFF0C\u5426\u5247\u50B3\u56DE false\u3002",
+      "description": {
+        "en": "Given an integer x, return true if x is a palindrome, and false otherwise.",
+        "zh": "給定一個整數 x，如果 x 是回文，則傳回 true，否則傳回 false。"
+      },
       "examples": [
         {
           "input": "x = 121",
           "output": "true",
           "explanation_en": "121 reads as 121 from left to right and from right to left.",
-          "explanation_zh": "121 \u5F9E\u5DE6\u5230\u53F3\u8B80\u70BA 121\uFF0C\u5F9E\u53F3\u5230\u5DE6\u8B80\u70BA 121\u3002"
+          "explanation_zh": "121 從左到右讀為 121，從右到左讀為 121。"
         },
         {
           "input": "x = -121",
           "output": "false",
           "explanation_en": "From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.",
-          "explanation_zh": "\u5F9E\u5DE6\u5230\u53F3\u8B80\u70BA -121\u3002\u5F9E\u53F3\u5230\u5DE6\u8B80\u70BA 121-\u3002\u56E0\u6B64\u5B83\u4E0D\u662F\u56DE\u6587\u6578\u3002"
+          "explanation_zh": "從左到右讀為 -121，從右到左讀為 121-。因此它不是回文數。"
         },
         {
           "input": "x = 10",
           "output": "false",
           "explanation_en": "Reads 01 from right to left. Therefore it is not a palindrome.",
-          "explanation_zh": "\u5F9E\u53F3\u5230\u5DE6\u8B80\u70BA 01\u3002\u56E0\u6B64\u5B83\u4E0D\u662F\u56DE\u6587\u6578\u3002"
+          "explanation_zh": "從右到左讀為 01。因此它不是回文數。"
         }
       ],
-      "constraints": "-2^31 \u003C= x \u003C= 2^31 - 1",
+      "constraints": "-2^31 <= x <= 2^31 - 1",
       "follow_up_en": "Could you solve it without converting the integer to a string?",
-      "follow_up_zh": "\u5982\u679C\u4E0D\u5C07\u6574\u6578\u8F49\u63DB\u70BA\u5B57\u4E32\uFF0C\u4F60\u80FD\u89E3\u6C7A\u9019\u500B\u554F\u984C\u55CE\uFF1F",
+      "follow_up_zh": "如果不將整數轉換為字串，你能解決這個問題嗎？",
       "solutions": [
         {
           "type": "String Conversion",
           "language": "Java",
           "code": "class Solution {\n    public boolean isPalindrome(int x) {\n        String s = String.valueOf(x);\n        StringBuilder s2 = new StringBuilder(s);\n        String s3 = s2.reverse().toString();\n        return s.equals(s3);\n    }\n}",
-          "explanation_zh": "\u4F7F\u7528\u5B57\u4E32\u6CD5\uFF1A\u7C21\u55AE\u76F4\u89C0\u3001\u6613\u65BC\u7406\u89E3\uFF0C\u4F46\u8A18\u61B6\u9AD4\u8017\u7528\u8F03\u9AD8",
+          "explanation_zh": "使用字串法：簡單直觀、易於理解，但記憶體耗用較高",
           "time_complexity": "O(n)",
           "space_complexity": "O(n)"
         },
         {
           "type": "Integer Reverse",
           "language": "Java",
-          "code": "class Solution {\n    public boolean isPalindrome(int x) {\n        int num = x, rev = 0;\n        if (x \u003C 0) return false;\n        while (num != 0) {\n            int digit = num % 10;\n            rev = rev * 10 \u002B digit;\n            num = num / 10;\n        }\n        return x == rev;\n    }\n}",
-          "explanation_zh": "\u4F7F\u7528\u6578\u5B57\u53CD\u8F49\u6CD5\uFF1A\u9AD8\u6548\u7BC0\u7701\u7A7A\u9593\uFF0C\u4F46\u9700\u8655\u7406\u53CD\u8F49\u908F\u8F2F",
+          "code": "class Solution {\n    public boolean isPalindrome(int x) {\n        int num = x, rev = 0;\n        if (x < 0) return false;\n        while (num != 0) {\n            int digit = num % 10;\n            rev = rev * 10 + digit;\n            num = num / 10;\n        }\n        return x == rev;\n    }\n}",
+          "explanation_zh": "使用數字反轉法：高效節省空間，但需處理反轉溢位",
           "time_complexity": "O(n)",
           "space_complexity": "O(1)"
         }
