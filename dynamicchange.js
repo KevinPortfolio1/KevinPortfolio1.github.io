@@ -1,4 +1,4 @@
-<script>
+
   let problemsData = null;  // 全域變數存放 json 內容
 
   // 頁面載入時，先 fetch JSON 檔案
@@ -44,4 +44,4 @@
       }
     });
   });
-</script>
+
