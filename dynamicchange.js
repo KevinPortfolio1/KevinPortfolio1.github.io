@@ -9,7 +9,7 @@ fetch('merged.json')
   .catch(err => console.error('Error loading JSON:', err));
 
 // 點擊事件設定
-document.querySelectorAll('.sidebar p').forEach(p => {
+document.querySelectorAll('.sidebar a').forEach(p => {
   p.addEventListener('click', () => {
     const dateId = p.id; // 取得被點擊的 p 的 id (日期)
     if (!problemsData) {
