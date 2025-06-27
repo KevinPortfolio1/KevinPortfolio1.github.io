@@ -21,36 +21,38 @@
 <body>
 
   <header>
-    <h1 id="site-title">新消息</h1>
+    <div class="container d-flex justify-content-between align-items-center">
+     <h1 id="site-title" class="h3 mb-0">新消息</h1>
+   </div>
 	
 	
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	
-	<div class="border border-light rounded p-2">
-	
-	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-	  Nav應用
-    </button>
-	
-	<!-- 折疊區塊 -->
-	<div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ms-auto">
-      <li class="nav-item"><a class="nav-link"  href="index.html">首頁</a></li>
-      <li class="nav-item"><a class="nav-link"  href="solveproblem.html">Leetcode題目與解法</a></li>
-      <li class="nav-item"><a class="nav-link"  href="technology.html">網頁技術</a></li>
-	  <li class="nav-item"><a class="nav-link"  href="about.html">靜態網頁方向</a></li>
-    </ul>
-	</div>
-	
-	</div>
+		<div class="container">
+		
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+			  <span class="navbar-toggler-icon"></span>
+			  Nav應用
+			</button>
+			
+			<!-- 折疊區塊 -->
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+				  <li class="nav-item"><a class="nav-link"  href="index.html">首頁</a></li>
+				  <li class="nav-item"><a class="nav-link"  href="solveproblem.html">Leetcode題目與解法</a></li>
+				  <li class="nav-item"><a class="nav-link"  href="technology.html">網頁技術</a></li>
+				  <li class="nav-item"><a class="nav-link"  href="about.html">靜態網頁方向</a></li>
+				</ul>
+			</div>
+		
+		</div>
     </nav>
 	
   </header>
 
-  <main class="container-fluid">
+  <main class="container mt-4">
     <div class="row">
-    <aside class="col-md-3 bg-light p-3 sidebar">
+    <aside class="col-md-3 bg-light p-3 border rounded">
       <h2>側邊欄</h2>
       <p>這裡是側邊內容。</p>
 	  
@@ -63,10 +65,12 @@
 	</div>
   </main>
 
-  <footer>
-    <p>&copy; 2025 此網頁每日有空就會更新</p>
-	<p>&copy; 2025 目前網頁方向為資訊....</p>
-	<p>&copy; 2025 隱私權未來加入cookie紀錄....</p>
+  <footer class="bg-dark text-white text-center py-4 mt-4">
+     <div class="container">
+		<p class="mb-1">&copy; 2025 此網頁每日有空就會更新</p>
+		<p class="mb-1">&copy; 2025 目前網頁方向為資訊....</p>
+		<p class="mb-1">&copy; 2025 隱私權未來加入cookie紀錄....</p>
+	</div>
   </footer>
 
   <!-- Bootstrap 5 JS Bundle CDN (includes Popper) -->
