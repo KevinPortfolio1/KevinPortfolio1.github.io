@@ -1,0 +1,75 @@
+﻿🧩 方法 1：JavaScript + 外部 API
+
+🔁 流程圖：
+
+[使用者開啟網頁]
+        ↓
+[JavaScript 發出 fetch 請求]
+        ↓
+[API 回傳每日消息 JSON]
+        ↓
+[JavaScript 將消息插入網頁 DOM]
+
+📘 說明：
+
+    使用者每次開啟網頁時，網頁內的 JavaScript 都會即時向外部 API 發出請求。
+
+    API 回傳當天的消息，例如 JSON 格式：{ "message": "今日天氣晴" }
+
+    JavaScript 將這段文字顯示在頁面中。
+
+🔧 方法 2：GitHub Actions + 靜態網站重建
+
+🔁 流程圖：
+
+[每天觸發 GitHub Actions 排程]
+        ↓
+[GitHub Actions 執行腳本抓取每日消息][python]
+        ↓
+[靜態網站生成器 (Hugo/Jekyll) 產出新頁面]
+        ↓
+[部署至 GitHub Pages / Netlify]
+        ↓
+[使用者開啟網頁 -> 看到最新消息]
+
+📘 說明：
+
+    使用 GitHub Actions 設定每天定時（如每天 00:00）執行工作流程。
+
+    工作流程會抓取每日消息（例如從 RSS、API 或網站），再將它寫入 Markdown、HTML 或 JSON 檔中。
+
+    重新產生整個靜態網站，並部署至 GitHub Pages 或其他靜態主機。
+
+    使用者瀏覽網頁時，會看到最新消息，因為頁面本身就是新的。
+	
+📘 結論：一體兩面，互相配合
+
+階段	工具					功能						配合 GitHub Actions
+1		Python 	腳本			抓資料、寫入內容檔案			✅
+2		Hugo/Jekyll					產出網站並部署					✅
+
+🗂️ 方法 3：JSON 檔 + JavaScript
+
+🔁 流程圖：
+
+[每日手動或腳本更新 daily-message.json 檔案]
+        ↓
+[使用者開啟網頁]
+        ↓
+[JavaScript 載入 daily-message.json]
+        ↓
+[顯示最新消息在頁面上]
+
+📘 說明：
+
+    你維護一個簡單的 JSON 檔案 daily-message.json，每天更新一次。
+
+    使用 JavaScript 把這個 JSON 的內容載入網頁並顯示。
+
+    可以搭配自動化腳本（如使用 GitHub Actions）每日更新該 JSON。
+
+📊 總比較表：
+方法編號	是否需伺服器支援	是否自動每日更新	使用者載入快	適合用途
+方法 1			❌（需外部 API）	✅				✅					即時動態資料
+方法 2			✅（需 CI/CD 支援）	✅				✅				可 SEO、靜態部署
+方法 3			❌					❌（需手動或定時更新）	✅		控制簡單、低技術門檻
