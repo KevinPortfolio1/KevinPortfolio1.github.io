@@ -22,6 +22,7 @@
   21.2025/06/25 json檔案合併修正,javascript讀取修正,solveproblem.html添加側邊攔內容,json與javascript還能再修改  
   22.2025/06/26 solveproblem.html 側邊欄從p改為a,並修改其css,還有更改js選期的項目為a,下一步為修改及增加  
   23.2025/06/27 加入新頁面newsget.html  
+  24.2025/06/28 尋找更新的方向(手動,自動配合action,...)  
   
   
   
