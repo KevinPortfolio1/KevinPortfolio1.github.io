@@ -1,8 +1,8 @@
 // 取得目前頁面 URL
 const currentPage = window.location.href;
 
-// 取得目前時間（ISO 格式）
-const currentTime = new Date().toISOString();
+// 取得目前時間
+const currentTime = new Date().toLocaleString('sv-SE', { timeZone: 'Asia/Taipei' }).replace(' ', 'T');
 
 // 儲存到 localStorage
 localStorage.setItem('lastVisitedPage', currentPage);
