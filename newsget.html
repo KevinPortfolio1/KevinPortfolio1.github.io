@@ -60,15 +60,17 @@
 	  
     </aside>
 	
-    <section class="col-md-9 p-3 content" id="countdown" x-data="countdownTimer('2025-07-05T12:00:00')"  x-init="startCountdown">
-      <h2>距離指定時間結束還有：</h2>
-		  <p>
-			<strong x-text="days"></strong> 天 
-			<strong x-text="hours"></strong> 小時 
-			<strong x-text="minutes"></strong> 分 
-			<strong x-text="seconds"></strong> 秒
+    <section class="col-md-9">
+      <div class="card shadow border-info mb-3 p-4" style="background-color: #f8f9fa;" id="countdown" x-data="countdownTimer('2025-07-05T12:00:00')" x-init="startCountdown">
+	  <h2 class="card-title text-center text-primary">距離指定時間結束還有：</h2>
+		  <p class="text-center fs-4">
+			<strong class="text-dark fw-bold" x-text="days"></strong> 天 
+			<strong class="text-dark fw-bold" x-text="hours"></strong> 小時 
+			<strong class="text-dark fw-bold" x-text="minutes"></strong> 分 
+			<strong class="text-dark fw-bold" x-text="seconds"></strong> 秒
 		  </p>
 		  <p x-show="expired" class="text-danger fw-bold">🎉 倒數結束！歡迎進入新的一日 🎉</p>
+	  </div>
     </section>
 	</div>
   </main>
