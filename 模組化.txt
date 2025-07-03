@@ -1,0 +1,44 @@
+project/
+│
+├── index.html
+├── main.js              ← 主模組載入點
+├── modules/
+│   ├── weatherAPI.js    ← 天氣功能模組
+│   ├── chartDraw.js     ← 繪圖邏輯模組（例如 Chart.js）
+│   ├── contentUpdater.js← DOM 內容更新模組
+│   └── utils.js         ← 通用函數（如 formatDate, errorHandler）
+
+
+🔸 1. 建立一個 modules/weatherAPI.js
+
+// modules/weatherAPI.js
+export async function getWeatherData(city = "Taipei") {
+  const url = `https://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q=${city}&lang=zh`;
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("取得天氣資料失敗");
+  const data = await response.json();
+  return data;
+}
+
+🔸 2. 修改你的主 JS：main.js
+
+// main.js
+import { getWeatherData } from './modules/weatherAPI.js';
+
+document.getElementById("weatherapi").addEventListener("click", async () => {
+  try {
+    const data = await getWeatherData("Taipei");
+    console.log("天氣資訊：", data);
+    document.querySelector(".content p").innerText = `
+      ${data.location.name}：${data.current.temp_c}°C, ${data.current.condition.text}
+    `;
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+🔸 3. 修改 HTML 引入方式：
+
+將這段放到 <body> 最後：
+
+<script type="module" src="main.js"></script>
