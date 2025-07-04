@@ -5,20 +5,12 @@ function mainContentHandler() {
     isAnimating: false,
 
     updateContent(newTitle, newText) {
-      this.isAnimating = true; // 開始淡出
+      this.isAnimating = true;
       setTimeout(() => {
         this.mainTitle = newTitle;
         this.mainText = newText;
-        this.isAnimating = false; // 淡入
-      }, 500); // 要跟 CSS transition duration 同步
-    },
-
-    loadJsonContent() {
-      const jsonData = {
-        title: '從 JSON 載入的標題',
-        text: '這是從 JSON 模擬資料載入的內容。'
-      };
-      this.updateContent(jsonData.title, jsonData.text);
+        this.isAnimating = false;
+      }, 500);
     },
 
     loadWeatherAPI() {
@@ -35,11 +27,6 @@ function mainContentHandler() {
         .catch(err => {
           this.updateContent('載入失敗', err.message);
         });
-    },
-
-    drawChart() {
-      this.updateContent('圖表區', '圖表將顯示於此（可結合 Chart.js）。');
-      // 這邊你可以放 Chart.js 的繪圖程式碼
     }
   };
 }
