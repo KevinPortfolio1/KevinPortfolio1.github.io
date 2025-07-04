@@ -41,6 +41,16 @@
 	canvas { 
 	  border: 1px solid #ccc; display: block; margin: 20px auto; 
 	}
+	
+	
+	.fade-text {
+	  transition: opacity 0.5s ease;
+	  opacity: 1;
+	}
+	.fade-text.fade-out {
+	  opacity: 0;
+	}
+	
   </style>
   
    <!-- 引入 Chart.js  繪畫-->
@@ -83,7 +93,7 @@
 	
   </header>
 
-  <main class="container-fluid" x-data="mainContentHandler()">
+  <main class="container-fluid">
     <div class="row">
     <aside class="col-md-3 bg-light p-3 sidebar">
       <h2>側邊欄</h2>
@@ -96,15 +106,15 @@
 	  
 	  <!--Alpine.js 動態內容 -->
 	  <!--其他按鈕會更改click內容會導致alpine.js失效(loadWeatherAPI) -->
-      <button @click="mainTitle = '新的標題'; mainText = '這是透過新按鈕改變的內容。'; loadWeatherAPI()" class="btn btn-dark w-100 mb-2">
+      <button @click="updateContent('新的標題', '這是透過新按鈕改變的內容。');" class="btn btn-dark w-100 mb-2">
         Alpine.js更改內容
       </button>
 	  
     </aside>
 	
-    <section class="col-md-9 p-3 content">
-      <h2 x-text="mainTitle">主要內容</h2>
-      <p x-text="mainText">這裡是主內容區。</p>
+    <section class="col-md-9 p-3 content" x-data="mainContentHandler()">
+      <h2 :class="{'fade-text': true, 'fade-out': isAnimating}" x-text="mainTitle">主要內容</h2>
+      <p :class="{'fade-text': true, 'fade-out': isAnimating}" x-text="mainText">這裡是主內容區。</p>
     </section>
 	</div>
   </main>

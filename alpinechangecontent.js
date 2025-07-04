@@ -2,42 +2,21 @@ function mainContentHandler() {
   return {
     mainTitle: '主要內容',
     mainText: '這裡是主內容區。',
+    isAnimating: false,
 
-    updateContent() {
-      this.mainTitle = '已更新的主標題';
-      this.mainText = '這是透過 Alpine.js 更新的內容。';
+    updateContent(newTitle, newText) {
+      this.isAnimating = true; // 開始淡出
+      setTimeout(() => {
+        this.mainTitle = newTitle;
+        this.mainText = newText;
+        this.isAnimating = false; // 淡入
+      }, 500); // 要跟 CSS transition duration 同步
     },
 
-    loadJsonContent() {
-      const jsonData = {
-        title: '從 JSON 載入的標題',
-        text: '這是從 JSON 模擬資料載入的內容。'
-      };
-      this.mainTitle = jsonData.title;
-      this.mainText = jsonData.text;
-    },
-
+    // 你可以把 loadWeatherAPI() 也整合進來
     loadWeatherAPI() {
-      this.mainTitle = '載入天氣資料中...';
-	  const url = 'https://api.open-meteo.com/v1/forecast?latitude=25.038&longitude=121.5645&current=temperature_2m,weather_code';
-
-      fetch(url)
-        .then(res => res.json())
-        .then(data => {
-          const temp = data.current.temperature_2m;
-		  const code = data.current.weather_code;
-		  this.mainTitle = '台北即時天氣';
-		  this.mainText = `氣溫：${temp}°C，天氣代碼：${code}`;
-        })
-        .catch(err => {
-          this.mainTitle = '載入失敗';
-          this.mainText = err.message;
-        });
-    },
-
-    drawChart() {
-      this.mainTitle = '圖表區';
-      this.mainText = '圖表將顯示於此（可結合 Chart.js）。';
+      // 假設這是抓 API 更新內容的函式
+      this.updateContent('新的標題', 'API 載入的新內容');
     }
-  };
+  }
 }
