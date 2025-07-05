@@ -12,15 +12,19 @@
   
   <style>
 		.calendar-grid {
-		  grid-template-columns: repeat(7, 1fr);
-		  gap: 5px;
+		  display: grid;
+		  grid-template-columns: repeat(7, 1fr); /* 7欄 */
+		  gap: 4px;
+		  width: 100%;
 		}
 
 		.calendar-grid div {
-		  padding: 8px;
+		  padding: 8px 0;
 		  border: 1px solid #dee2e6;
 		  background-color: #f8f9fa;
 		  border-radius: 4px;
+		  font-size: 0.9rem;
+		  word-break: keep-all;
 		}
 
 		.calendar-grid .today {
@@ -75,7 +79,7 @@
 	  <!-- 📅 日曆區塊 -->
 		<div id="calendar" class="calendar mt-4 border p-3 rounded">
 		  <h5 class="text-center" id="calendar-title">2025 年 7 月</h5>
-		  <div class="calendar-grid d-grid text-center mt-2">
+		  <div class="calendar-grid  text-center mt-2">
 			<!-- JS 動態產生日期格子 -->
 			</div>
 		</div>
