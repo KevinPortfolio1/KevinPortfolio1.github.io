@@ -4,14 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="這是一個網頁設計想法每日更新">
-  <title>二欄式版型示例</title>
+  <title>二欄式版型(新消息)</title>
   
   <!-- Favicon 範例 -->
   <!-- 可選：PNG 格式 -->
     <link rel="icon" href="favicon.png" type="image/png">
   
   <style>
-   
+		.calendar-grid {
+		  grid-template-columns: repeat(7, 1fr);
+		  gap: 5px;
+		}
+
+		.calendar-grid div {
+		  padding: 8px;
+		  border: 1px solid #dee2e6;
+		  background-color: #f8f9fa;
+		  border-radius: 4px;
+		}
+
+		.calendar-grid .today {
+		  background-color: #0d6efd;
+		  color: white;
+		  font-weight: bold;
+		}
   </style>
   
 	<!-- Bootstrap 5 CSS CDN -->
@@ -55,13 +71,19 @@
     <div class="row">
     <aside class="col-md-3 bg-light p-3 border rounded">
       <h2>側邊欄</h2>
-      <p>這裡是側邊內容。</p>
-	  
+      <p>倒數時間</p>
+	  <!-- 📅 日曆區塊 -->
+		<div id="calendar" class="calendar mt-4 border p-3 rounded">
+		  <h5 class="text-center" id="calendar-title">2025 年 7 月</h5>
+		  <div class="calendar-grid d-grid text-center mt-2">
+			<!-- JS 動態產生日期格子 -->
+			</div>
+		</div>
 	  
     </aside>
 	
     <section class="col-md-9">
-      <div class="card shadow border-info mb-3 p-4" style="background-color: #f8f9fa;" id="countdown" x-data="countdownTimer('2025-07-05T12:00:00')" x-init="startCountdown">
+      <div class="card shadow border-info mb-3 p-4" style="background-color: #f8f9fa;" id="countdown" x-data="countdownTimer('2025-07-06T00:00:00')" x-init="startCountdown">
 	  <h2 class="card-title text-center text-primary">距離指定時間結束還有：</h2>
 		  <p class="text-center fs-4">
 			<strong class="text-dark fw-bold" x-text="days"></strong> 天 
@@ -93,6 +115,8 @@
     <script src="timeclockdiff1.js"></script>
 	 <!-- cpnsole輸出  -->
     <script src="consoledrawcat1.js"></script>
+	<!-- 日歷輸出  -->
+    <script src="calendertable.js"></script>
   
   </body>
 </html>
