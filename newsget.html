@@ -11,39 +11,35 @@
     <link rel="icon" href="favicon.png" type="image/png">
   
   <style>
-   .calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 7格 */
-    gap: 6px;
-  }
+		  .calendar-grid {
+		  display: grid;
+		  grid-template-columns: repeat(7, minmax(50px, 1fr)); /* 解決小寬格子問題 */
+		  gap: 6px;
+		}
 
-  .calendar-grid div {
-    padding: 10px;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 4px;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+		.calendar-grid div {
+		  padding: 10px;
+		  background-color: #f8f9fa;
+		  border: 1px solid #dee2e6;
+		  border-radius: 4px;
+		  text-align: center;
+		  white-space: nowrap;
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		}
 
-  .calendar-grid .today {
-    background-color: #0d6efd;
-    color: white;
-    font-weight: bold;
-  }
+		.calendar-grid .today {
+		  background-color: #0d6efd;
+		  color: white;
+		  font-weight: bold;
+		}
 
-  #calendar {
-    overflow-x: auto;
-  }
+		#calendar {
+		  overflow-x: auto;
+		}
 
-  /* 在小螢幕下保持每格有最小寬度，防止太擠 */
-  @media (max-width: 800px) {
-    .calendar-grid {
-      grid-template-columns: repeat(7, minmax(50px, 1fr));
-    }
-  }
+	
+
   </style>
   
 	<!-- Bootstrap 5 CSS CDN -->
