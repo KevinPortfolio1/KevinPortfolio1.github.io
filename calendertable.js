@@ -50,9 +50,17 @@ document.addEventListener("DOMContentLoaded", function () {
       const countdownComponent = document.querySelector('#countdown');
       const alpineData = countdownComponent.__x?.$data;
 
-      if (alpineData && typeof alpineData.updateTarget === 'function') {
-        alpineData.updateTarget(targetDate);
-      }
+		   if (alpineData) {
+			// 1. 更新目標時間
+			if (typeof alpineData.updateTarget === 'function') {
+			  alpineData.updateTarget(targetDate);
+			}
+
+			// 2. 重新啟動倒數（確保計時器重啟）
+			if (typeof alpineData.startCountdown === 'function') {
+			  alpineData.startCountdown();  // 👈 手動重啟
+			}
+		  }
     });
 
     calendarGrid.appendChild(cell);
