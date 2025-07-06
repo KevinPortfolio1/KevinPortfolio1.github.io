@@ -11,46 +11,7 @@
     <link rel="icon" href="favicon.png" type="image/png">
   
   <style>
-		#calendar {
-		  width: 100%;
-		  max-width: 100%;
-		  box-sizing: border-box;
-		  overflow-x: auto;
-		}
-
-		.calendar-grid {
-		  display: grid;
-		  grid-template-columns: repeat(7, 1fr);
-		  gap: 6px;
-		  margin-top: 10px;
-		  box-sizing: border-box;
-		}
-
-		.calendar-grid div {
-		  padding: 10px;
-		  background-color: #f1f1f1;
-		  border-radius: 5px;
-		  text-align: center;
-		  cursor: pointer;
-		  min-width: 0; /* 防止 overflow */
-		  box-sizing: border-box;
-		}
-
-		.calendar-grid div:hover {
-		  background-color: #e0e0e0;
-		}
-
-		.calendar-grid .today {
-		  background-color: #0d6efd;
-		  color: white;
-		  font-weight: bold;
-		}
-
-		.calendar-grid div strong {
-		  cursor: default;
-		  background: none;
-		  display: block;
-		}
+		
   </style>
   
 	<!-- Bootstrap 5 CSS CDN -->
@@ -98,7 +59,7 @@
 	  <!-- 📅 日曆區塊 -->
 		<div id="calendar" class="calendar mt-4 border p-3 rounded">
 		  <h5 class="text-center" id="calendar-title">2025 年 7 月</h5>
-		  <div class="calendar-grid  text-center mt-2">
+		  <div class="calendar-grid">
 			<!-- JS 動態產生日期格子 -->
 			</div>
 		</div>

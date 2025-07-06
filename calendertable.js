@@ -9,37 +9,43 @@ document.addEventListener("DOMContentLoaded", function () {
   const monthNames = ["1 月", "2 月", "3 月", "4 月", "5 月", "6 月", "7 月", "8 月", "9 月", "10 月", "11 月", "12 月"];
   title.textContent = `${year} 年 ${monthNames[month]}`;
 
-  const firstDay = new Date(year, month, 1).getDay(); // 該月第一天星期幾
-  const totalDays = new Date(year, month + 1, 0).getDate(); // 該月總天數
+  const firstDay = new Date(year, month, 1).getDay();
+  const totalDays = new Date(year, month + 1, 0).getDate();
 
-  // 加入星期標題
   const weekDays = ["日", "一", "二", "三", "四", "五", "六"];
+  let weekRow = document.createElement("div");
+  weekRow.className = "row text-center";
+
   weekDays.forEach(day => {
     const cell = document.createElement("div");
     cell.className = "col fw-bold text-secondary";
     cell.textContent = day;
-    calendarGrid.appendChild(cell);
+    weekRow.appendChild(cell);
   });
 
-  // 補上空白格子
+  calendarGrid.appendChild(weekRow);
+
+  // 填入空白格子 + 日期格子
+  let currentRow = document.createElement("div");
+  currentRow.className = "row text-center";
+
+  // 空白格子
   for (let i = 0; i < firstDay; i++) {
     const emptyCell = document.createElement("div");
-	 emptyCell.className = "col";
-    calendarGrid.appendChild(emptyCell);
+    emptyCell.className = "col p-2";
+    currentRow.appendChild(emptyCell);
   }
 
-  // 加入每一天
   for (let day = 1; day <= totalDays; day++) {
     const cell = document.createElement("div");
-	cell.className = "col p-2 bg-light rounded border cursor-pointer";
+    cell.className = "col p-2 bg-light rounded border";
     cell.textContent = day;
 
-    // 如果是今天，高亮
+    // 高亮今天
     if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
       cell.classList.add("bg-primary", "text-white", "fw-bold");
     }
 
-    // 點擊事件
     cell.addEventListener("click", () => {
       const targetDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}T00:00:00`;
       const countdownComponent = document.querySelector('#countdown');
@@ -48,10 +54,15 @@ document.addEventListener("DOMContentLoaded", function () {
       if (alpineData && typeof alpineData.updateTarget === 'function') {
         alpineData.updateTarget(targetDate);
       }
-	  
-	  
     });
 
-    calendarGrid.appendChild(cell);
+    currentRow.appendChild(cell);
+
+    // 每 7 個格子換一行
+    if ((firstDay + day) % 7 === 0 || day === totalDays) {
+      calendarGrid.appendChild(currentRow);
+      currentRow = document.createElement("div");
+      currentRow.className = "row text-center";
+    }
   }
 });
