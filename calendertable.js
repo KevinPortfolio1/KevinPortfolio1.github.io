@@ -56,20 +56,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // 👉 點擊事件 - 更新 Alpine 倒數
     cell.addEventListener("click", () => {
       const targetDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}T00:00:00`;
-      const countdownComponent = document.querySelector('#countdown');
-      const alpineData = countdownComponent.__x?.$data;
+      
+      // 延遲取 Alpine 實例，確保已初始化
+		  setTimeout(() => {
+			const countdownComponent = document.querySelector('#countdown');
+			const alpineData = countdownComponent.__x?.$data;
 
-      if (alpineData) {
-        if (typeof alpineData.updateTarget === 'function') {
-          alpineData.updateTarget(targetDate);
-        }
+			if (alpineData) {
+			  if (typeof alpineData.updateTarget === 'function') {
+				alpineData.updateTarget(targetDate);
+			  }
 
-        if (typeof alpineData.startCountdown === 'function') {
-          alpineData.startCountdown(); // 重新啟動倒數
-        }
-      } else {
-        console.warn("⚠️ 找不到 Alpine 實例或 #countdown 元素尚未初始化！");
-      }
+			  if (typeof alpineData.startCountdown === 'function') {
+				alpineData.startCountdown();
+			  }
+			} else {
+			  console.warn("⚠️ 找不到 Alpine 實例！");
+			}
+		  }, 0);
     });
 
     calendarGrid.appendChild(cell);
