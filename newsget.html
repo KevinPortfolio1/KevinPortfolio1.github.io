@@ -86,7 +86,9 @@
       <p>倒數時間</p>
 	  <!-- 日曆區塊 -->
       <div id="calendar" class="calendar mt-4 border p-3 rounded">
+	    <button @click="prevMonth" class="btn btn-sm btn-outline-primary">&lt;</button>
         <h5 class="text-center" x-text="`${year} 年 ${monthNames[month]}`"></h5>
+		<button @click="nextMonth" class="btn btn-sm btn-outline-primary">&gt;</button>
         <div class="calendar-grid">
           <!-- 星期標題 -->
           <template x-for="dayName in weekDays" :key="dayName">
@@ -145,8 +147,7 @@
     <script src="timeclockdiff1.js"></script>
 	 <!-- cpnsole輸出  -->
     <script src="consoledrawcat1.js"></script>
-	<!-- 日歷輸出  -->
-    <script src="calendertable.js"></script>
+	
   
   </body>
 </html>

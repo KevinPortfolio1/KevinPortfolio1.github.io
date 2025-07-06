@@ -1,6 +1,6 @@
 function countdownTimer(initialTarget) {
   return {
-    // 倒數邏輯
+    // ===== 倒數狀態 =====
     targetTime: new Date(initialTarget).getTime(),
     intervalId: null,
     expired: false,
@@ -9,7 +9,7 @@ function countdownTimer(initialTarget) {
     minutes: 0,
     seconds: 0,
 
-    // 日曆邏輯
+    // ===== 日曆狀態 =====
     year: null,
     month: null,
     daysInMonth: [],
@@ -17,7 +17,7 @@ function countdownTimer(initialTarget) {
     weekDays: ["日", "一", "二", "三", "四", "五", "六"],
     monthNames: ["1 月", "2 月", "3 月", "4 月", "5 月", "6 月", "7 月", "8 月", "9 月", "10 月", "11 月", "12 月"],
 
-    // 初始化日曆（取得當月天數與空白格）
+    // ===== 初始化日曆（設定當前年月） =====
     initCalendar() {
       const today = new Date();
       this.year = today.getFullYear();
@@ -25,6 +25,7 @@ function countdownTimer(initialTarget) {
       this.generateCalendar();
     },
 
+    // ===== 產生當月日曆資料（空白格 + 日期） =====
     generateCalendar() {
       const firstDay = new Date(this.year, this.month, 1).getDay();
       this.emptyDays = Array.from({ length: firstDay }, (_, i) => i + 1);
@@ -33,7 +34,7 @@ function countdownTimer(initialTarget) {
       this.daysInMonth = Array.from({ length: totalDays }, (_, i) => i + 1);
     },
 
-    // 檢查是否為今天
+    // ===== 判斷是否為今天（加上背景標示） =====
     isToday(day) {
       const today = new Date();
       return day === today.getDate() &&
@@ -41,7 +42,7 @@ function countdownTimer(initialTarget) {
              this.year === today.getFullYear();
     },
 
-    // 點擊日期 → 更新倒數目標
+    // ===== 點擊日曆上的某天 → 更新倒數目標 =====
     onDateClick(day) {
       if (!day) return;
       const newTarget = `${this.year}-${String(this.month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}T00:00:00`;
@@ -49,20 +50,20 @@ function countdownTimer(initialTarget) {
       this.startCountdown();
     },
 
-    // 更新倒數目標
+    // ===== 更新倒數目標時間（新的日期） =====
     updateTarget(newTarget) {
       this.targetTime = new Date(newTarget).getTime();
       this.expired = false;
     },
 
-    // 啟動倒數
+    // ===== 啟動倒數計時 =====
     startCountdown() {
-      this.updateCountdown();
+      this.updateCountdown(); // 立即更新
       if (this.intervalId) clearInterval(this.intervalId);
       this.intervalId = setInterval(() => this.updateCountdown(), 1000);
     },
 
-    // 更新倒數時間
+    // ===== 倒數邏輯計算並更新畫面變數 =====
     updateCountdown() {
       const now = new Date().getTime();
       const distance = this.targetTime - now;
@@ -80,7 +81,7 @@ function countdownTimer(initialTarget) {
       this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
     },
 
-    // ⬅️ 上一個月
+    // ===== 上一個月切換 =====
     prevMonth() {
       if (this.month === 0) {
         this.month = 11;
@@ -91,7 +92,7 @@ function countdownTimer(initialTarget) {
       this.generateCalendar();
     },
 
-    // ➡️ 下一個月
+    // ===== 下一個月切換 =====
     nextMonth() {
       if (this.month === 11) {
         this.month = 0;
