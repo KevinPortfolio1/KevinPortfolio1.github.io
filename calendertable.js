@@ -16,41 +16,40 @@ document.addEventListener("DOMContentLoaded", function () {
   const weekDays = ["日", "一", "二", "三", "四", "五", "六"];
   weekDays.forEach(day => {
     const cell = document.createElement("div");
-    cell.innerHTML = `<strong>${day}</strong>`;
+    cell.className = "col fw-bold text-secondary";
+    cell.textContent = day;
     calendarGrid.appendChild(cell);
   });
 
   // 補上空白格子
   for (let i = 0; i < firstDay; i++) {
     const emptyCell = document.createElement("div");
+	 emptyCell.className = "col";
     calendarGrid.appendChild(emptyCell);
   }
 
   // 加入每一天
   for (let day = 1; day <= totalDays; day++) {
     const cell = document.createElement("div");
+	cell.className = "col p-2 bg-light rounded border cursor-pointer";
     cell.textContent = day;
 
     // 如果是今天，高亮
     if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
-      cell.classList.add("today");
+      cell.classList.add("bg-primary", "text-white", "fw-bold");
     }
 
     // 點擊事件
     cell.addEventListener("click", () => {
-      alert(`你點選了：${year}/${month + 1}/${day}`);
+      const targetDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}T00:00:00`;
+      const countdownComponent = document.querySelector('#countdown');
+      const alpineData = countdownComponent.__x?.$data;
+
+      if (alpineData && typeof alpineData.updateTarget === 'function') {
+        alpineData.updateTarget(targetDate);
+      }
 	  
-	  const targetDate = `2025-07-${String(day).padStart(2, '0')}T00:00:00`;
-
-	  const countdownBox = document.getElementById("countdown-box");
-
-	  // 替換 x-data 屬性
-	  countdownBox.setAttribute("x-data", `countdownTimer('${targetDate}')`);
-
-	  // 移除 Alpine 實例並重新初始化
-	  Alpine.discoverUninitializedComponents((el) => {
-		return el.id === 'countdown-box';
-	  });
+	  
     });
 
     calendarGrid.appendChild(cell);
