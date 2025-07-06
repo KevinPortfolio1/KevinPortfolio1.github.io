@@ -13,39 +13,38 @@ document.addEventListener("DOMContentLoaded", function () {
   const totalDays = new Date(year, month + 1, 0).getDate();
 
   const weekDays = ["日", "一", "二", "三", "四", "五", "六"];
-  let weekRow = document.createElement("div");
-  weekRow.className = "row text-center";
 
+  // 建立星期標題格子（直接加到 grid）
   weekDays.forEach(day => {
     const cell = document.createElement("div");
-    cell.className = "col fw-bold text-secondary";
     cell.textContent = day;
-    weekRow.appendChild(cell);
+    cell.style.fontWeight = "bold";
+    cell.style.color = "#6c757d"; // Bootstrap 的 text-secondary 顏色
+    calendarGrid.appendChild(cell);
   });
 
-  calendarGrid.appendChild(weekRow);
-
-  // 填入空白格子 + 日期格子
-  let currentRow = document.createElement("div");
-  currentRow.className = "row text-center";
-
-  // 空白格子
+  // 補空格
   for (let i = 0; i < firstDay; i++) {
     const emptyCell = document.createElement("div");
-    emptyCell.className = "col p-2";
-    currentRow.appendChild(emptyCell);
+    emptyCell.textContent = "";
+    calendarGrid.appendChild(emptyCell);
   }
 
+  // 日期格子
   for (let day = 1; day <= totalDays; day++) {
     const cell = document.createElement("div");
-    cell.className = "col p-2 bg-light rounded border";
     cell.textContent = day;
 
-    // 高亮今天
-    if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
-      cell.classList.add("bg-primary", "text-white", "fw-bold");
+    // 加入 today 樣式
+    if (
+      day === today.getDate() &&
+      month === today.getMonth() &&
+      year === today.getFullYear()
+    ) {
+      cell.classList.add("today");
     }
 
+    // 點擊事件 - 更新倒數時間
     cell.addEventListener("click", () => {
       const targetDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}T00:00:00`;
       const countdownComponent = document.querySelector('#countdown');
@@ -56,13 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    currentRow.appendChild(cell);
-
-    // 每 7 個格子換一行
-    if ((firstDay + day) % 7 === 0 || day === totalDays) {
-      calendarGrid.appendChild(currentRow);
-      currentRow = document.createElement("div");
-      currentRow.className = "row text-center";
-    }
+    calendarGrid.appendChild(cell);
   }
 });
