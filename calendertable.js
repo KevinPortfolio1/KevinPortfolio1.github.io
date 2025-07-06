@@ -14,26 +14,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const weekDays = ["日", "一", "二", "三", "四", "五", "六"];
 
-  // 建立星期標題格子（直接加到 grid）
+  // 清空現有格子（避免重複渲染）
+  calendarGrid.innerHTML = "";
+
+  // 👉 加入星期標題格子
   weekDays.forEach(day => {
     const cell = document.createElement("div");
     cell.textContent = day;
     cell.style.fontWeight = "bold";
-    cell.style.color = "#6c757d"; // Bootstrap 的 text-secondary 顏色
+    cell.style.color = "#6c757d";
+    cell.style.textAlign = "center";
     calendarGrid.appendChild(cell);
   });
 
-  // 補空格
+  // 👉 補空格
   for (let i = 0; i < firstDay; i++) {
     const emptyCell = document.createElement("div");
     emptyCell.textContent = "";
     calendarGrid.appendChild(emptyCell);
   }
 
-  // 日期格子
+  // 👉 建立日期格子
   for (let day = 1; day <= totalDays; day++) {
     const cell = document.createElement("div");
     cell.textContent = day;
+    cell.classList.add("calendar-day");
+    cell.style.textAlign = "center";
+    cell.style.cursor = "pointer";
 
     // 加入 today 樣式
     if (
@@ -42,25 +49,27 @@ document.addEventListener("DOMContentLoaded", function () {
       year === today.getFullYear()
     ) {
       cell.classList.add("today");
+      cell.style.fontWeight = "bold";
+      cell.style.backgroundColor = "#e9f7ef";
     }
 
-    // 點擊事件 - 更新倒數時間
+    // 👉 點擊事件 - 更新 Alpine 倒數
     cell.addEventListener("click", () => {
       const targetDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}T00:00:00`;
       const countdownComponent = document.querySelector('#countdown');
       const alpineData = countdownComponent.__x?.$data;
 
-		   if (alpineData) {
-			// 1. 更新目標時間
-			if (typeof alpineData.updateTarget === 'function') {
-			  alpineData.updateTarget(targetDate);
-			}
+      if (alpineData) {
+        if (typeof alpineData.updateTarget === 'function') {
+          alpineData.updateTarget(targetDate);
+        }
 
-			// 2. 重新啟動倒數（確保計時器重啟）
-			if (typeof alpineData.startCountdown === 'function') {
-			  alpineData.startCountdown();  // 👈 手動重啟
-			}
-		  }
+        if (typeof alpineData.startCountdown === 'function') {
+          alpineData.startCountdown(); // 重新啟動倒數
+        }
+      } else {
+        console.warn("⚠️ 找不到 Alpine 實例或 #countdown 元素尚未初始化！");
+      }
     });
 
     calendarGrid.appendChild(cell);
