@@ -39,6 +39,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // 點擊事件
     cell.addEventListener("click", () => {
       alert(`你點選了：${year}/${month + 1}/${day}`);
+	  
+	  const targetDate = `2025-07-${String(day).padStart(2, '0')}T00:00:00`;
+
+	  const countdownBox = document.getElementById("countdown-box");
+
+	  // 替換 x-data 屬性
+	  countdownBox.setAttribute("x-data", `countdownTimer('${targetDate}')`);
+
+	  // 移除 Alpine 實例並重新初始化
+	  Alpine.discoverUninitializedComponents((el) => {
+		return el.id === 'countdown-box';
+	  });
     });
 
     calendarGrid.appendChild(cell);
