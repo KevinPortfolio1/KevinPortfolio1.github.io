@@ -13,24 +13,28 @@
   <style>
 		.calendar-grid {
 		  display: grid;
-		  grid-template-columns: repeat(7, 1fr); /* 7欄 */
-		  gap: 4px;
-		  width: 100%;
+		  grid-template-columns: repeat(7, 1fr);
+		  gap: 6px;
+		  margin-top: 10px;
 		}
-
 		.calendar-grid div {
-		  padding: 8px 0;
-		  border: 1px solid #dee2e6;
-		  background-color: #f8f9fa;
-		  border-radius: 4px;
-		  font-size: 0.9rem;
-		  word-break: keep-all;
+		  padding: 10px;
+		  background-color: #f1f1f1;
+		  border-radius: 5px;
+		  text-align: center;
+		  cursor: pointer;
 		}
-
+		.calendar-grid div:hover {
+		  background-color: #e0e0e0;
+		}
 		.calendar-grid .today {
 		  background-color: #0d6efd;
 		  color: white;
 		  font-weight: bold;
+		}
+		.calendar-grid div strong {
+		  cursor: default;
+		  background: none;
 		}
   </style>
   
