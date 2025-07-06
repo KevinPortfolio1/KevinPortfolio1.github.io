@@ -63,15 +63,10 @@ document.addEventListener("DOMContentLoaded", function () {
 			const alpineData = countdownComponent.__x?.$data;
 
 			if (alpineData) {
-			  if (typeof alpineData.updateTarget === 'function') {
 				alpineData.updateTarget(targetDate);
-			  }
-
-			  if (typeof alpineData.startCountdown === 'function') {
 				alpineData.startCountdown();
-			  }
 			} else {
-			  console.warn("⚠️ 找不到 Alpine 實例！");
+				console.warn("⛔ Alpine 實例未初始化 (#countdown.__x 為 undefined)");
 			}
 		  }, 0);
     });
