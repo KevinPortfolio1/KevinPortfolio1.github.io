@@ -57,18 +57,25 @@ document.addEventListener("DOMContentLoaded", function () {
     cell.addEventListener("click", () => {
       const targetDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}T00:00:00`;
       
-      // 延遲取 Alpine 實例，確保已初始化
-		  setTimeout(() => {
-			const countdownComponent = document.querySelector('#countdown');
-			const alpineData = countdownComponent.__x?.$data;
+      // 等待 Alpine 初始化完成
+      const countdownComponent = document.querySelector('#countdown');
 
-			if (alpineData) {
-				alpineData.updateTarget(targetDate);
-				alpineData.startCountdown();
-			} else {
-				console.warn("⛔ Alpine 實例未初始化 (#countdown.__x 為 undefined)");
-			}
-		  }, 0);
+      // 若已初始化則直接執行；否則等待 alpine:initialized 事件
+      if (countdownComponent.__x?.$data) {
+        const alpineData = countdownComponent.__x.$data;
+        alpineData.updateTarget(targetDate);
+        alpineData.startCountdown();
+      } else {
+        document.addEventListener("alpine:initialized", () => {
+          const alpineData = countdownComponent.__x?.$data;
+          if (alpineData) {
+            alpineData.updateTarget(targetDate);
+            alpineData.startCountdown();
+          } else {
+            console.warn("⚠️ Alpine 初始化仍失敗");
+          }
+        }, { once: true });
+      }
     });
 
     calendarGrid.appendChild(cell);
