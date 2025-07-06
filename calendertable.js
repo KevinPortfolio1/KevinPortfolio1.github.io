@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("alpine:initialized", () => {
   const calendarGrid = document.querySelector(".calendar-grid");
   const title = document.getElementById("calendar-title");
 
@@ -14,10 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const weekDays = ["日", "一", "二", "三", "四", "五", "六"];
 
-  // 清空現有格子（避免重複渲染）
   calendarGrid.innerHTML = "";
 
-  // 👉 加入星期標題格子
+  // 加入星期標題
   weekDays.forEach(day => {
     const cell = document.createElement("div");
     cell.textContent = day;
@@ -27,14 +26,14 @@ document.addEventListener("DOMContentLoaded", function () {
     calendarGrid.appendChild(cell);
   });
 
-  // 👉 補空格
+  // 補空格
   for (let i = 0; i < firstDay; i++) {
     const emptyCell = document.createElement("div");
     emptyCell.textContent = "";
     calendarGrid.appendChild(emptyCell);
   }
 
-  // 👉 建立日期格子
+  // 建立日期格子
   for (let day = 1; day <= totalDays; day++) {
     const cell = document.createElement("div");
     cell.textContent = day;
@@ -42,40 +41,19 @@ document.addEventListener("DOMContentLoaded", function () {
     cell.style.textAlign = "center";
     cell.style.cursor = "pointer";
 
-    // 加入 today 樣式
-    if (
-      day === today.getDate() &&
-      month === today.getMonth() &&
-      year === today.getFullYear()
-    ) {
+    if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
       cell.classList.add("today");
       cell.style.fontWeight = "bold";
       cell.style.backgroundColor = "#e9f7ef";
     }
 
-    // 👉 點擊事件 - 更新 Alpine 倒數
     cell.addEventListener("click", () => {
-      const targetDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}T00:00:00`;
-      
-      // 等待 Alpine 初始化完成
+      const targetDate = `${year}-${String(month + 1).padStart(2,'0')}-${String(day).padStart(2,'0')}T00:00:00`;
       const countdownComponent = document.querySelector('#countdown');
+      const alpineData = countdownComponent.__x.$data;
 
-      // 若已初始化則直接執行；否則等待 alpine:initialized 事件
-      if (countdownComponent.__x?.$data) {
-        const alpineData = countdownComponent.__x.$data;
-        alpineData.updateTarget(targetDate);
-        alpineData.startCountdown();
-      } else {
-        document.addEventListener("alpine:initialized", () => {
-          const alpineData = countdownComponent.__x?.$data;
-          if (alpineData) {
-            alpineData.updateTarget(targetDate);
-            alpineData.startCountdown();
-          } else {
-            console.warn("⚠️ Alpine 初始化仍失敗");
-          }
-        }, { once: true });
-      }
+      alpineData.updateTarget(targetDate);
+      alpineData.startCountdown();
     });
 
     calendarGrid.appendChild(cell);
