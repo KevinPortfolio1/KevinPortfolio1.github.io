@@ -43,3 +43,5 @@ function countdownTimer(targetTimeString) {
     }
   };
 }
+
+window.countdownTimer = countdownTimer;
