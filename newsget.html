@@ -11,7 +11,16 @@
     <link rel="icon" href="favicon.png" type="image/png">
   
   <style>
-		
+   .calendar-grid .row > div {
+    min-width: 40px;            /* 每格最小寬度 */
+    white-space: nowrap;        /* 不允許換行 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #calendar {
+    overflow-x: auto;           /* 小螢幕可水平捲動 */
+  }
   </style>
   
 	<!-- Bootstrap 5 CSS CDN -->
