@@ -52,6 +52,7 @@
 <body>
 
   <header style="background-color: #e3f2fd;" class="py-3 border-bottom">
+  
     <div class="container d-flex justify-content-between align-items-center">
      <h1 id="site-title" class="h3 mb-0">新消息</h1>
    </div>
@@ -81,55 +82,58 @@
 	
   </header>
 
-  <main class="container mt-4" x-data="countdownTimer('2025-07-06T00:00:00'); calendarState()" x-init="startCountdown(); initCalendar()">
+  <main class="container mt-4" x-data="countdownTimer('2025-07-06T00:00:00')" x-init="startCountdown(); initCalendar()">
     <div class="row">
-    <aside class="col-md-3 bg-light p-3 border rounded">
-      <h2>側邊欄</h2>
-      <p>倒數時間</p>
-	  <!-- 日曆區塊 -->
-      <div id="calendar" class="calendar mt-4 border p-3 rounded">
-	    <button @click="prevMonth" class="btn btn-sm btn-outline-primary">&lt;</button>
-        <h5 class="text-center" x-text="`${year} 年 ${monthNames[month]}`"></h5>
-		<button @click="nextMonth" class="btn btn-sm btn-outline-primary">&gt;</button>
-        <div class="calendar-grid">
-          <!-- 星期標題 -->
-          <template x-for="dayName in weekDays" :key="dayName">
-            <div style="font-weight:bold; color:#6c757d;" x-text="dayName"></div>
-          </template>
+      <aside class="col-md-3 bg-light p-3 border rounded">
+        <h2>側邊欄</h2>
+        <p>倒數時間</p>
 
-          <!-- 空白格 -->
-          <template x-for="n in emptyDays" :key="'empty-' + n">
-            <div class="empty"></div>
-          </template>
+        <div id="calendar" class="calendar mt-4 border p-3 rounded">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <button @click="prevMonth" class="btn btn-sm btn-outline-primary">&lt;</button>
+            <h5 class="text-center mb-0" x-text="`${year} 年 ${monthNames[month]}`"></h5>
+            <button @click="nextMonth" class="btn btn-sm btn-outline-primary">&gt;</button>
+          </div>
 
-          <!-- 日期格 -->
-          <template x-for="day in daysInMonth" :key="day">
-            <div 
-              :class="{  'today': isToday(day) && !isSelected(day),
-							'bg-primary text-white': isSelected(day)}" 
-              @click="onDateClick(day)"
-              x-text="day"
-              :style="cursor: pointer;"
-            ></div>
-          </template>
+          <div class="calendar-grid">
+            <!-- 星期標題 -->
+            <template x-for="dayName in weekDays" :key="dayName">
+              <div style="font-weight:bold; color:#6c757d;" x-text="dayName"></div>
+            </template>
+
+            <!-- 空白格 -->
+            <template x-for="n in emptyDays" :key="'empty-' + n">
+              <div class="empty"></div>
+            </template>
+
+            <!-- 日期格 -->
+            <template x-for="day in daysInMonth" :key="day">
+              <div 
+                @click="onDateClick(day)"
+                x-text="day"
+                :class="{
+                  'today': isToday(day) && !isSelected(day),
+                  'bg-primary text-white': isSelected(day)
+                }"
+              ></div>
+            </template>
+          </div>
         </div>
-      </div>
-	  
-    </aside>
-	
-    <section class="col-md-9">
-      <div class="card shadow border-info mb-3 p-4" style="background-color: #f8f9fa;">
-	  <h2 class="card-title text-center text-primary">距離指定時間結束還有：</h2>
-		  <p class="text-center fs-4">
-			<strong class="text-dark fw-bold" x-text="days"></strong> 天 
-			<strong class="text-dark fw-bold" x-text="hours"></strong> 小時 
-			<strong class="text-dark fw-bold" x-text="minutes"></strong> 分 
-			<strong class="text-dark fw-bold" x-text="seconds"></strong> 秒
-		  </p>
-		  <p x-show="expired" class="text-danger fw-bold">🎉 倒數結束！歡迎進入新的一日 🎉</p>
-	  </div>
-    </section>
-	</div>
+      </aside>
+
+      <section class="col-md-9">
+        <div class="card shadow border-info mb-3 p-4" style="background-color: #f8f9fa;">
+          <h2 class="card-title text-center text-primary">距離指定時間結束還有：</h2>
+          <p class="text-center fs-4">
+            <strong class="text-dark fw-bold" x-text="days"></strong> 天 
+            <strong class="text-dark fw-bold" x-text="hours"></strong> 小時 
+            <strong class="text-dark fw-bold" x-text="minutes"></strong> 分 
+            <strong class="text-dark fw-bold" x-text="seconds"></strong> 秒
+          </p>
+          <p x-show="expired" class="text-danger fw-bold">🎉 倒數結束！歡迎進入新的一日 🎉</p>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer class="bg-dark text-white text-center py-4 mt-4">
