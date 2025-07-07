@@ -105,10 +105,11 @@
           <!-- 日期格 -->
           <template x-for="day in daysInMonth" :key="day">
             <div 
-              :class="{'today': isToday(day),'bg-primary text-white': isSelected(day)}" 
+              :class="{  'today': isToday(day) && !isSelected(day),
+							'bg-primary text-white': isSelected(day)}" 
               @click="onDateClick(day)"
               x-text="day"
-              :style="isToday(day) ? 'font-weight:bold; background-color:#0d6efd; color:#fff;' : 'font-weight:normal; background-color:#f8f9fa; color:#000;'"
+              :style="cursor: pointer;"
             ></div>
           </template>
         </div>
@@ -149,21 +150,6 @@
     <script src="timeclockdiff1.js"></script>
 	 <!-- cpnsole輸出  -->
     <script src="consoledrawcat1.js"></script>
-	
-	
-	<script>
-		function calendarState() {
-		  return {
-			selectedDay: null,
-			onDateClick(day) {
-			  this.selectedDay = day;
-			},
-			isSelected(day) {
-			  return this.selectedDay === day;
-			}
-		  }
-		}
-	</script>
 	
   
   </body>
