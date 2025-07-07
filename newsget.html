@@ -26,6 +26,8 @@
 		  white-space: nowrap;
 		  overflow: hidden;
 		  text-overflow: ellipsis;
+		  cursor: pointer;       /* ← 游標變成點擊手勢 */
+		  user-select: none;     /* ← 避免選取文字造成游標變化 */
 		}
 
 		.calendar-grid .today {
@@ -79,7 +81,7 @@
 	
   </header>
 
-  <main class="container mt-4" x-data="countdownTimer('2025-07-06T00:00:00')" x-init="startCountdown(); initCalendar()">
+  <main class="container mt-4" x-data="countdownTimer('2025-07-06T00:00:00'); calendarState()" x-init="startCountdown(); initCalendar()">
     <div class="row">
     <aside class="col-md-3 bg-light p-3 border rounded">
       <h2>側邊欄</h2>
@@ -103,7 +105,7 @@
           <!-- 日期格 -->
           <template x-for="day in daysInMonth" :key="day">
             <div 
-              :class="{'today': isToday(day)}" 
+              :class="{'today': isToday(day),'bg-primary text-white': isSelected(day)}" 
               @click="onDateClick(day)"
               x-text="day"
               :style="isToday(day) ? 'font-weight:bold; background-color:#0d6efd; color:#fff;' : 'font-weight:normal; background-color:#f8f9fa; color:#000;'"
@@ -147,6 +149,21 @@
     <script src="timeclockdiff1.js"></script>
 	 <!-- cpnsole輸出  -->
     <script src="consoledrawcat1.js"></script>
+	
+	
+	<script>
+		function calendarState() {
+		  return {
+			selectedDay: null,
+			onDateClick(day) {
+			  this.selectedDay = day;
+			},
+			isSelected(day) {
+			  return this.selectedDay === day;
+			}
+		  }
+		}
+	</script>
 	
   
   </body>
