@@ -17,8 +17,9 @@ function countdownTimer(initialTarget) {
     weekDays: ["日", "一", "二", "三", "四", "五", "六"],
     monthNames: ["1 月", "2 月", "3 月", "4 月", "5 月", "6 月", "7 月", "8 月", "9 月", "10 月", "11 月", "12 月"],
 
-    // ✅ 日期點擊選擇狀態
+    // ✅ 額外狀態
     selectedDay: null,
+    selectedDateString: '',  // ← 新增：選擇日期顯示用
 
     // ===== 初始化日曆（設定當前年月） =====
     initCalendar() {
@@ -53,9 +54,17 @@ function countdownTimer(initialTarget) {
     // ===== 點擊日曆上的某天 → 更新倒數目標 + 選中樣式 =====
     onDateClick(day) {
       if (!day) return;
-      this.selectedDay = day;  // ← ✅ 設定目前選中日期
+      this.selectedDay = day;
 
-      const newTarget = `${this.year}-${String(this.month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}T00:00:00`;
+      // 建立選中的日期物件
+      const selectedDate = new Date(this.year, this.month, day);
+      const yyyy = selectedDate.getFullYear();
+      const mm = String(selectedDate.getMonth() + 1).padStart(2, '0');
+      const dd = String(selectedDate.getDate()).padStart(2, '0');
+
+      const newTarget = `${yyyy}-${mm}-${dd}T00:00:00`;
+      this.selectedDateString = `${yyyy}/${mm}/${dd}`;
+
       this.updateTarget(newTarget);
       this.startCountdown();
     },
@@ -100,7 +109,8 @@ function countdownTimer(initialTarget) {
         this.month -= 1;
       }
       this.generateCalendar();
-      this.selectedDay = null;  // ✅ 切換月份時清除選擇
+      this.selectedDay = null;
+      this.selectedDateString = '';
     },
 
     // ===== 下一個月切換 =====
@@ -112,7 +122,8 @@ function countdownTimer(initialTarget) {
         this.month += 1;
       }
       this.generateCalendar();
-      this.selectedDay = null;  // ✅ 切換月份時清除選擇
+      this.selectedDay = null;
+      this.selectedDateString = '';
     }
   };
 }
