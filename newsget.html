@@ -119,6 +119,18 @@
             </template>
           </div>
         </div>
+		
+		<p class="mt-4">指定時間與日期 用於紀錄</p>
+		<div class="mb-3">
+		    <label class="form-label">選擇日期與時間</label>
+			<input type="datetime-local" class="form-control">
+			<button class="btn btn-primary">儲存紀錄</button>
+			<button class="btn btn-secondary">
+			  <span>查看紀錄</span>
+			</button>
+		</div>
+		
+		
       </aside>
 
       <section class="col-md-9">
@@ -132,6 +144,11 @@
           </p>
           <p x-show="expired" class="text-danger fw-bold">🎉 倒數結束！歡迎進入新的一日 🎉</p>
         </div>
+		
+		<div>
+		</div>
+		
+		
       </section>
     </div>
   </main>
