@@ -82,7 +82,7 @@
 	
   </header>
 
-  <main class="container mt-4" x-data="countdownTimer('2025-07-06T00:00:00')" x-init="startCountdown(); initCalendar()">
+  <main class="container mt-4" x-data="countdownTimer('2025-07-06T00:00:00')" x-init="startCountdown(); initCalendar();loadRecords()">
     <div class="row">
       <aside class="col-md-3 bg-light p-3 border rounded">
         <h2>側邊欄</h2>
@@ -123,11 +123,11 @@
 		<p class="mt-4">指定時間與日期 用於紀錄</p>
 		<div class="mb-3">
 		    <label class="form-label">選擇日期與時間</label>
-			<input type="datetime-local" class="form-control">
+			<input type="datetime-local" class="form-control" x-model="dateTime">
 			<label class="form-label mt-2">輸入文字</label>
-			<input type="text" class="form-control mb-3" placeholder="請輸入內容...">
-			<button class="btn btn-primary">儲存紀錄</button>
-			<button class="btn btn-secondary">
+			<input type="text" class="form-control mb-3" placeholder="請輸入內容..." x-model="textInput">
+			<button class="btn btn-primary" @click="saveRecord">儲存紀錄</button>
+			<button class="btn btn-secondary" @click="loadRecords">
 			  <span>查看紀錄</span>
 			</button>
 		</div>
@@ -147,8 +147,23 @@
           <p x-show="expired" class="text-danger fw-bold">🎉 倒數結束！歡迎進入新的一日 🎉</p>
         </div>
 		
-		<div>
-		</div>
+		<div class="card shadow border-info mb-3 p-4" style="background-color: #f8f9fa;">
+        <h2 class="card-title text-center text-primary">紀錄查看:</h2>
+        <template x-if="records.length === 0">
+          <p class="text-center text-muted">目前沒有紀錄</p>
+        </template>
+        <ul class="list-group" x-show="records.length > 0">
+          <template x-for="(record, index) in records" :key="index">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div>
+                <strong x-text="record.dateTime"></strong><br>
+                <span x-text="record.text"></span>
+              </div>
+              <button class="btn btn-sm btn-danger" @click="deleteRecord(index)">刪除</button>
+            </li>
+          </template>
+        </ul>
+      </div>
 		
 		
       </section>
