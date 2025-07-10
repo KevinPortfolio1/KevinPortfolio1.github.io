@@ -102,9 +102,11 @@
             </template>
 
             <!-- 空白格 -->
-            <template x-for="n in emptyDays" :key="'empty-' + n">
+			<template x-if="Array.isArray(emptyDays)">
+             <template x-for="n in emptyDays" :key="'empty-' + n">
               <div class="empty"></div>
-            </template>
+             </template>
+			</template>
 
             <!-- 日期格 -->
             <template x-for="day in daysInMonth" :key="day">
