@@ -205,13 +205,13 @@
 				<h4 class="mb-4 text-center">輸入的測試資料</h4>
 
 				<div class="mb-3">
-				  <label for="inputName" class="form-label">name</label>
-				  <input type="text" class="form-control" id="inputName" placeholder="測試用inputName" required>
+				  <label for="inputvalue1" class="form-label">要驗證的值</label>
+				  <input type="text" class="form-control" id="inputvalue1" placeholder="測試用inputName" required>
 				</div>
 
 				<div class="mb-3">
-				  <label for="inputEmail" class="form-label">code</label>
-				  <input type="email" class="form-control" id="inputEmail" placeholder="測試用inputcode" required>
+				  <label for="inputregex1" class="form-label">regex value</label>
+				  <input type="text" class="form-control" id="inputregex1" placeholder="測試用inputcode" required>
 				</div>
 
 				<button type="submit" class="btn btn-primary w-100">送出</button>
@@ -287,6 +287,26 @@
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+  
+  
+  
+	document.querySelector('form').addEventListener('submit', function (e) {
+		  e.preventDefault(); // 阻止表單提交
+
+		  const value = document.getElementById('inputvalue1').value;
+		  const regexStr = document.getElementById('inputregex1').value;
+
+		  try {
+			const regex = new RegExp(regexStr);
+			if (regex.test(value)) {
+			  alert('✅ 驗證成功！輸入的值符合正則表達式');
+			} else {
+			  alert('❌ 驗證失敗，輸入的值不符合正則表達式');
+			}
+		  } catch (err) {
+			alert('⚠️ 無效的正則表達式：' + err.message);
+		  }
+	});
   
   </script>
   
