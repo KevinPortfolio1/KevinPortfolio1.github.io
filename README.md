@@ -37,6 +37,7 @@
   36.2025/07/10  修改newsget.html 修改日歷空白陣列問題與側邊欄分隔線與border  
   37.2025/07/11  修改about.html 網頁結構說明與規劃其他方向  
   38.2025/07/12  修改technology.html 表單驗證regex  
+  39.2025/07/13  修改about.html  內容  
   
   
   
