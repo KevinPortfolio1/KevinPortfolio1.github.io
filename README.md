@@ -38,6 +38,8 @@
   37.2025/07/11  修改about.html 網頁結構說明與規劃其他方向  
   38.2025/07/12  修改technology.html 表單驗證regex  
   39.2025/07/13  修改about.html  內容  
+  40.2025/07/14  修改technology.html  加入亂數與cnava,顯示有模糊狀況需處理  
+  
   
   
   
