@@ -166,6 +166,8 @@
 	  <button onclick="showCarousel4()">顯示動畫效果</button>
 	  <p>表單（Form）</p>
 	  <button onclick="showCarousel5()">顯示表單（Form）</button>
+	  <p>隨機號碼</p>
+	  <button onclick="showCarousel6()">顯示隨機號碼</button>
     </aside>
 	
 	<div class="col-md-9 p-3">
@@ -222,6 +224,14 @@
 	     <button class="btn btn-secondary shadow rounded-circle p-3" onclick="scrollToTop()" title="回到頂端">
 			⬆️
 		</button>
+	  </div>
+	  
+	  
+	  <div class="randomway mx-auto d-none position-fixed bottom-0 end-0 mb-4 me-4 d-none animate__animated" id="randomway">
+	     <canvas id="randomcanvas1"></canvas>
+		  <button class="btn btn-secondary shadow rounded-circle p-3" onclick="randomandcanvasdraw()">
+			開始選擇亂數即顯示圖片
+		 </button>
 	  </div>
 	  
     </section>
@@ -283,6 +293,12 @@
     carousel.classList.add("d-block");    // 你也可以用 d-flex 視情況而定
   }
   
+  function showCarousel6() {
+    const carousel = document.getElementById("randomway");
+    carousel.classList.remove("d-none");  // 移除隱藏
+    carousel.classList.add("d-block");    // 你也可以用 d-flex 視情況而定
+  }
+  
   // 回到頂部功能
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -307,6 +323,32 @@
 			alert('⚠️ 無效的正則表達式：' + err.message);
 		  }
 	});
+  
+  
+	function randomandcanvasdraw() {
+		  const canvas = document.getElementById('randomcanvas1');
+		  const ctx = canvas.getContext('2d');
+
+		  // 設定 canvas 大小
+		  canvas.width = 300;
+		  canvas.height = 150;
+
+		  // 產生 1～100 的亂數
+		  const randomValue = Math.floor(Math.random() * 100) + 1;
+
+		  // 清除畫布
+		  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+		  // 設定文字樣式
+		  ctx.font = '48px Arial';
+		  ctx.fillStyle = '#333';
+		  ctx.textAlign = 'center';
+		  ctx.textBaseline = 'middle';
+
+		  // 繪製亂數數值到畫布中央
+		  ctx.fillText(randomValue, canvas.width / 2, canvas.height / 2);
+	}
+  
   
   </script>
   
