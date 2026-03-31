@@ -39,11 +39,11 @@ body, html {
 }
 
 .divider {
-    width: 50px;
-    height: 4px;
-    background: var(--primary);
-    margin: 20px auto;
-    border-radius: 2px;
+    width: 100%;          /* 撐滿父容器（名片）的寬度 */
+    height: 1px;          /* 既然是整條，建議細一點 (1px) 更有高級感 */
+    background: #e2e8f0;  /* 使用淡灰色，才不會顯得太突兀或壓迫 */
+    margin: 25px 0;       /* 上下間隔 25px，左右不需要 auto 因為已經滿了 */
+    border: none;         /* 確保沒有預設邊框 */
 }
 
 /* 按鈕樣式 */
