@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Software Developer Portfolio - 專注於系統設計與 DevOps">
     <title>個人專頁 | Software Developer</title>
-    <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -20,32 +20,41 @@
         </div>
     </nav>
 
-    <header id="about" class="hero">
-        <div class="hero-content">
-            <h1>Software Developer</h1>
-            <p>專注於系統設計、程式重構與 DevOps 實踐</p>
-            <a href="#projects" class="btn">查看專案</a>
-        </div>
+    <header id="about" class="profile-header">
+        <article class="profile-card">
+            <div class="profile-info">
+                <div class="badge">Available for Work</div>
+                <h1>Software Developer</h1>
+                <div class="divider"></div>
+                <p class="bio">專注於系統設計、程式重構與 DevOps 實踐</p>
+                <p class="location">📍 Taiwan | Remote</p>
+                <div class="cta-group">
+                    <a href="#projects" class="btn-primary">查看專案作品</a>
+                    <a href="docs/index.html" target="_blank" class="btn-outline">GitHub</a>
+                </div>
+            </div>
+        </article>
     </header>
 
     <main class="container">
-        <section id="skills">
+        <section id="skills" class="section-padding">
             <h2 class="section-title">專業技能</h2>
             <div class="skill-container">
-                <div class="skill-card">HTML / CSS</div>
-                <div class="skill-card">JavaScript</div>
-                <div class="skill-card">System Design</div>
-                <div class="skill-card">Refactoring</div>
-                <div class="skill-card">DevOps</div>
+                <span class="skill-tag">HTML / CSS</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">System Design</span>
+                <span class="skill-tag">Refactoring</span>
+                <span class="skill-tag">DevOps</span>
             </div>
         </section>
 
-        <section id="projects">
+        <section id="projects" class="section-padding">
             <h2 class="section-title">專案作品</h2>
             <div class="project-grid">
                 
                 <article class="project-card">
-                    <div class="card-content">
+                    <div class="card-body">
+                        <div class="card-icon">⚙️</div>
                         <h3>Core System</h3>
                         <p>核心系統模組設計與實作，涵蓋資料結構與演算法應用。</p>
                         <a href="docs/index.html" class="link-btn">技術文件庫 →</a>
@@ -53,7 +62,8 @@
                 </article>
 
                 <article class="project-card">
-                    <div class="card-content">
+                    <div class="card-body">
+                        <div class="card-icon">🚀</div>
                         <h3>DevOps Pipeline</h3>
                         <p>CI/CD 流程設計與自動化部署實踐，提升交付效率。</p>
                         <a href="docs/index.html" class="link-btn">查看實作流程 →</a>
@@ -61,10 +71,11 @@
                 </article>
 
                 <article class="project-card">
-                    <div class="card-content">
+                    <div class="card-body">
+                        <div class="card-icon">📝</div>
                         <h3>Technical Notes</h3>
                         <p>整理學習筆記與技術知識，建立文件化能力。</p>
-                        <a href="docs/index.html" class="link-btn">GitHub Repo</a>
+                        <a href="docs/index.html" class="link-btn">閱讀筆記</a>
                     </div>
                 </article>
 
@@ -73,7 +84,9 @@
     </main>
 
     <footer class="footer">
-        <p>&copy; 2026 Developer Portfolio</p>
+        <div class="container">
+            <p>&copy; 2026 Developer Portfolio | Built with HTML5 & CSS3</p>
+        </div>
     </footer>
 
 </body>
