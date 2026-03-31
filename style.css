@@ -40,8 +40,8 @@ body, html {
 
 .divider {
     width: 100%;          /* 撐滿父容器（名片）的寬度 */
-    height: 1px;          /* 既然是整條，建議細一點 (1px) 更有高級感 */
-    background: #e2e8f0;  /* 使用淡灰色，才不會顯得太突兀或壓迫 */
+    height: 5px;          /* 稍微加厚一點點，會更明顯 */
+    background: #1d4ed8;  /* 使用較深的藍色 (比起原先的 #2563eb 更深) */
     margin: 25px 0;       /* 上下間隔 25px，左右不需要 auto 因為已經滿了 */
     border: none;         /* 確保沒有預設邊框 */
 }
